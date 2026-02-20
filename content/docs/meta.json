@@ -14,6 +14,7 @@
     "[Postly](https://kokonutui.pro/templates#postly)",
     "[Startup](https://kokonutui.pro/templates#startup)",
     "---Components---",
+    "components/spotlight-cards",
     "components/slide-text-button",
     "components/loader",
     "components/liquid-glass-card",

@@ -109,6 +109,9 @@ https://kokonutui.com/docs/components/smooth-tab
 **Social Button** - Animated Social show-up
 https://kokonutui.com/docs/components/social-button
 
+**Spotlight Cards** - Feature grid with aurora ambient glow, magnetic 3D card tilt, and focus-dim siblings.
+https://kokonutui.com/docs/components/spotlight-cards
+
 **Stack** - Stack of cards that expend onclick.
 https://kokonutui.com/docs/components/card-stack
 

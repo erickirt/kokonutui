@@ -2,14 +2,14 @@ import { VerifiedIcon } from "lucide-react";
 import Image from "next/image";
 import XIcon from "../icons/x-icon";
 
-export type XCardProps = {
+export interface XCardProps {
   avatar: string;
   content: React.ReactNode;
   date?: string;
   isVerified?: boolean;
   name: string;
   username: string;
-};
+}
 
 export default function XCard({
   name,

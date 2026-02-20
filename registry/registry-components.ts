@@ -554,4 +554,15 @@ export const component: Registry = [
       },
     ],
   },
+  {
+    name: "spotlight-cards",
+    type: "registry:component",
+    dependencies: ["motion", "lucide-react"],
+    files: [
+      {
+        path: "components/kokonutui/spotlight-cards.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
 ];

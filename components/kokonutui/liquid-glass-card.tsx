@@ -11,7 +11,13 @@
  */
 
 import { cva, type VariantProps } from "class-variance-authority";
-import { ArrowLeft, ArrowRight, Pause, Play } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  MoreHorizontal,
+  Pause,
+  Play,
+} from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import { Button, type ButtonProps } from "@/components/ui/button";
@@ -38,7 +44,7 @@ interface GlassFilterProps {
 
 const GlassFilter = React.memo(
   ({ id, scale = DEFAULT_GLASS_FILTER_SCALE }: GlassFilterProps) => (
-    <svg className="hidden">
+    <svg aria-hidden="true" className="hidden" focusable={false}>
       <title>Glass Effect Filter</title>
       <defs>
         <filter
@@ -79,21 +85,24 @@ const GlassFilter = React.memo(
 GlassFilter.displayName = "GlassFilter";
 
 // Liquid Button - extends shadcn Button with glass effect
-const liquidButtonVariants = cva("relative transition-transform duration-300", {
-  variants: {
-    liquidVariant: {
-      default: "hover:scale-105",
-      none: "",
+const liquidButtonVariants = cva(
+  "relative transition-transform duration-200 motion-reduce:transition-none",
+  {
+    variants: {
+      liquidVariant: {
+        default:
+          "active:scale-[0.97] motion-reduce:active:scale-100 motion-reduce:hover:scale-100 [@media(hover:hover)]:hover:scale-105",
+        none: "",
+      },
     },
-  },
-  defaultVariants: {
-    liquidVariant: "default",
-  },
-});
+    defaultVariants: {
+      liquidVariant: "default",
+    },
+  }
+);
 
-export type LiquidButtonProps = ButtonProps & {
-  liquidVariant?: "default" | "none";
-};
+export type LiquidButtonProps = ButtonProps &
+  VariantProps<typeof liquidButtonVariants>;
 
 function LiquidButton({
   className,
@@ -111,12 +120,12 @@ function LiquidButton({
       >
         <div
           className={cn(
-            "pointer-events-none absolute inset-0 rounded-full transition-all",
+            "pointer-events-none absolute inset-0 rounded-[inherit]",
             GLASS_SHADOW
           )}
         />
         <div
-          className="pointer-events-none absolute inset-0 isolate -z-10 overflow-hidden rounded-md"
+          className="pointer-events-none absolute inset-0 isolate -z-10 overflow-hidden rounded-[inherit]"
           style={{ backdropFilter: `url("#${filterId}")` }}
         />
         <span className="relative z-10">{children}</span>
@@ -128,7 +137,7 @@ function LiquidButton({
 
 // Liquid Glass Card - extends shadcn Card with glass effect
 const liquidGlassCardVariants = cva(
-  "group relative overflow-hidden bg-background/20 backdrop-blur-[2px] transition-all duration-300",
+  "group relative overflow-hidden bg-background/20 backdrop-blur-[2px]",
   {
     variants: {
       glassSize: {
@@ -164,7 +173,7 @@ function LiquidGlassCard({
     >
       <div
         className={cn(
-          "pointer-events-none absolute inset-0 rounded-lg transition-all",
+          "pointer-events-none absolute inset-0 rounded-[inherit]",
           GLASS_SHADOW
         )}
       />
@@ -172,7 +181,7 @@ function LiquidGlassCard({
       {glassEffect && (
         <>
           <div
-            className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-lg"
+            className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-[inherit]"
             style={{ backdropFilter: `url("#${filterId}")` }}
           />
           <GlassFilter id={filterId} scale={DEFAULT_GLASS_FILTER_SCALE} />
@@ -181,7 +190,7 @@ function LiquidGlassCard({
 
       <div className="relative z-10">{children}</div>
 
-      <div className="pointer-events-none absolute inset-0 z-20 rounded-lg bg-gradient-to-r from-transparent via-black/5 to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100 dark:via-white/5" />
+      <div className="pointer-events-none absolute inset-0 z-20 rounded-[inherit] bg-gradient-to-r from-transparent via-black/5 to-transparent opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100 motion-reduce:transition-none dark:via-white/5" />
     </Card>
   );
 }
@@ -218,7 +227,7 @@ const VolumeBars = React.memo(({ isPlaying }: VolumeBarsProps) => {
         <div
           className={cn(
             "w-[3px] rounded-sm",
-            isPlaying && "animate-bounce-music"
+            isPlaying && "animate-bounce-music motion-reduce:animate-none"
           )}
           key={bar.id}
           style={{
@@ -257,13 +266,25 @@ const ProgressBar = React.memo(
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        const newTime = Math.min(
-          currentTime + SEEK_JUMP_SECONDS,
-          totalDuration
-        );
-        onSeek(newTime);
+      switch (e.key) {
+        case "ArrowRight":
+          e.preventDefault();
+          onSeek(Math.min(currentTime + SEEK_JUMP_SECONDS, totalDuration));
+          break;
+        case "ArrowLeft":
+          e.preventDefault();
+          onSeek(Math.max(currentTime - SEEK_JUMP_SECONDS, MIN_TIME));
+          break;
+        case "Home":
+          e.preventDefault();
+          onSeek(MIN_TIME);
+          break;
+        case "End":
+          e.preventDefault();
+          onSeek(totalDuration);
+          break;
+        default:
+          break;
       }
     };
 
@@ -278,6 +299,7 @@ const ProgressBar = React.memo(
           aria-valuemax={totalDuration}
           aria-valuemin={MIN_TIME}
           aria-valuenow={currentTime}
+          aria-valuetext={`${formatTime(currentTime)} of ${formatTime(totalDuration)}`}
           className="relative z-10 h-1 w-full cursor-pointer overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800"
           onClick={handleClick}
           onKeyDown={handleKeyDown}
@@ -300,22 +322,24 @@ export function NotificationCenter() {
   const [currentTime, setCurrentTime] = React.useState(MIN_TIME);
 
   React.useEffect(() => {
-    if (!isPlaying || currentTime >= TOTAL_DURATION) {
+    if (!isPlaying) {
       return;
     }
 
     const intervalId = setInterval(() => {
-      setCurrentTime((prev) => {
-        if (prev >= TOTAL_DURATION) {
-          setIsPlaying(false);
-          return TOTAL_DURATION;
-        }
-        return prev + 1;
-      });
+      setCurrentTime((prev) =>
+        prev + 1 >= TOTAL_DURATION ? TOTAL_DURATION : prev + 1
+      );
     }, TIMER_INTERVAL_MS);
 
     return () => clearInterval(intervalId);
-  }, [isPlaying, currentTime]);
+  }, [isPlaying]);
+
+  React.useEffect(() => {
+    if (currentTime >= TOTAL_DURATION) {
+      setIsPlaying(false);
+    }
+  }, [currentTime]);
 
   const handlePlayPause = () => {
     setIsPlaying((prev) => !prev);
@@ -337,6 +361,7 @@ export function NotificationCenter() {
               alt="Album Art for Glow by Echo"
               className="h-full w-full object-cover"
               height={64}
+              sizes="64px"
               src="https://ferf1mheo22r9ira.public.blob.vercel-storage.com/portrait2-x5MjJSaQ9ed0HZrewEhH7TkZwjZ66K.jpeg"
               width={64}
             />
@@ -399,15 +424,7 @@ export function NotificationCenter() {
               size="icon"
               variant="ghost"
             >
-              <svg
-                className="size-4"
-                fill="currentColor"
-                viewBox="0 0 16 16"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <title>Options</title>
-                <path d="M6.634 1.135A7 7 0 0 1 15 8a.5.5 0 0 1-1 0 6 6 0 1 0-6.5 5.98v-1.005A5 5 0 1 1 13 8a.5.5 0 0 1-1 0 4 4 0 1 0-4.5 3.969v-1.011A2.999 2.999 0 1 1 11 8a.5.5 0 0 1-1 0 2 2 0 1 0-2.5 1.936v-1.07a1 1 0 1 1 1 0V15.5a.5.5 0 0 1-1 0v-.518a7 7 0 0 1-.866-13.847" />
-              </svg>
+              <MoreHorizontal className="size-4" />
             </LiquidButton>
           </div>
         </div>

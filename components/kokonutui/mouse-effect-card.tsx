@@ -44,6 +44,7 @@ export interface MouseEffectCardProps {
   secondaryCtaText?: string;
   secondaryCtaUrl?: string;
   footerText?: string;
+  ariaLabel?: string;
 }
 
 interface Dot {
@@ -252,6 +253,7 @@ export default function MouseEffectCard({
   secondaryCtaText = "View Docs",
   secondaryCtaUrl = "#",
   footerText = "We do it all",
+  ariaLabel,
 }: MouseEffectCardProps) {
   const innerContainerRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(Number.POSITIVE_INFINITY);
@@ -302,6 +304,7 @@ export default function MouseEffectCard({
       )}
     >
       <CardContent
+        aria-label={ariaLabel ?? `${title} — ${subtitle}`}
         className="relative h-[400px] w-full overflow-hidden p-0"
         onMouseLeave={handleMouseLeave}
         onMouseMove={handleMouseMove}

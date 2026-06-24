@@ -308,6 +308,41 @@ export default function MouseEffectCard({
     mouseY.set(Number.POSITIVE_INFINITY);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (!innerContainerRef.current) return;
+    const rect = innerContainerRef.current.getBoundingClientRect();
+    const step = Math.min(rect.width, rect.height) * 0.2;
+    const currentX = Number.isFinite(mouseX.get())
+      ? mouseX.get()
+      : rect.width / 2;
+    const currentY = Number.isFinite(mouseY.get())
+      ? mouseY.get()
+      : rect.height / 2;
+
+    switch (e.key) {
+      case "ArrowUp":
+        e.preventDefault();
+        mouseY.set(Math.max(0, currentY - step));
+        mouseX.set(currentX);
+        break;
+      case "ArrowDown":
+        e.preventDefault();
+        mouseY.set(Math.min(rect.height, currentY + step));
+        mouseX.set(currentX);
+        break;
+      case "ArrowLeft":
+        e.preventDefault();
+        mouseX.set(Math.max(0, currentX - step));
+        mouseY.set(currentY);
+        break;
+      case "ArrowRight":
+        e.preventDefault();
+        mouseX.set(Math.min(rect.width, currentX + step));
+        mouseY.set(currentY);
+        break;
+    }
+  };
+
   return (
     <Card
       className={cn(
@@ -320,6 +355,7 @@ export default function MouseEffectCard({
         className="relative h-[400px] w-full overflow-hidden p-0"
         onBlur={handleBlur}
         onFocus={handleFocus}
+        onKeyDown={handleKeyDown}
         onMouseLeave={handleMouseLeave}
         onMouseMove={handleMouseMove}
         ref={innerContainerRef}

@@ -296,6 +296,18 @@ export default function MouseEffectCard({
     mouseY.set(Number.POSITIVE_INFINITY);
   };
 
+  const handleFocus = () => {
+    if (!innerContainerRef.current) return;
+    const rect = innerContainerRef.current.getBoundingClientRect();
+    mouseX.set(rect.width / 2);
+    mouseY.set(rect.height / 2);
+  };
+
+  const handleBlur = () => {
+    mouseX.set(Number.POSITIVE_INFINITY);
+    mouseY.set(Number.POSITIVE_INFINITY);
+  };
+
   return (
     <Card
       className={cn(
@@ -306,9 +318,12 @@ export default function MouseEffectCard({
       <CardContent
         aria-label={ariaLabel ?? `${title} — ${subtitle}`}
         className="relative h-[400px] w-full overflow-hidden p-0"
+        onBlur={handleBlur}
+        onFocus={handleFocus}
         onMouseLeave={handleMouseLeave}
         onMouseMove={handleMouseMove}
         ref={innerContainerRef}
+        tabIndex={0}
       >
         {dots.map((dot, index) => (
           <DotComponent

@@ -392,17 +392,6 @@ export const component: Registry = [
     ],
   },
   {
-    name: "morph-card",
-    type: "registry:component",
-    dependencies: ["motion", "lucide-react"],
-    files: [
-      {
-        path: "components/kokonutui/morph-card.tsx",
-        type: "registry:component",
-      },
-    ],
-  },
-  {
     name: "avatar-picker",
     type: "registry:component",
     dependencies: ["lucide-react", "motion"],

@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "next build",
+    "build": "fumadocs-mdx && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "fumadocs-mdx"
   },
   "dependencies": {
     "@number-flow/react": "^0.5.4",

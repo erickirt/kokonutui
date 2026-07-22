@@ -15,7 +15,7 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: `${siteConfig.name} - ${siteConfig.description}`,
+  title: `${siteConfig.name} - Free Open Source UI Components for React and Tailwind CSS`,
   description: siteConfig.description,
   metadataBase: new URL(siteConfig.url),
   applicationName: siteConfig.name,
@@ -36,6 +36,8 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.name,
+    type: "website",
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
@@ -44,6 +46,28 @@ export const metadata: Metadata = {
     description: siteConfig.description,
   },
 };
+
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteConfig.url}/#website`,
+      name: siteConfig.name,
+      url: siteConfig.url,
+      description: siteConfig.description,
+      publisher: { "@id": `${siteConfig.url}/#organization` },
+    },
+    {
+      "@type": "Organization",
+      "@id": `${siteConfig.url}/#organization`,
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: `${siteConfig.url}/icon.png`,
+      sameAs: [siteConfig.links.twitter, siteConfig.links.github],
+    },
+  ],
+});
 
 export const viewport: Viewport = {
   themeColor: [
@@ -67,6 +91,11 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en" suppressHydrationWarning>
         <body className={cn(geist.variable, geist.className, "antialiased")}>
+          <script
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: static schema.org JSON-LD built from siteConfig
+            dangerouslySetInnerHTML={{ __html: structuredData }}
+            type="application/ld+json"
+          />
           <RootProvider>
             <ThemeProvider
               attribute="class"

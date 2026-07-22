@@ -7,9 +7,9 @@ import { baseOptions } from "../layout.config";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Kokonut UI",
+    template: "%s | KokonutUI",
     default:
-      "Kokonut UI - Open Source UI Components to build beautiful websites",
+      "KokonutUI - Open Source UI Components to build beautiful websites",
   },
 };
 

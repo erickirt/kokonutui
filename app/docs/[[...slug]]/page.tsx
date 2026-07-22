@@ -11,6 +11,7 @@ import { Preview } from "@/components/mdx/preview";
 import { PreviewClient } from "@/components/mdx/preview-client";
 import PreviewTemplate from "@/components/mdx/preview-template";
 import WhatIncluded from "@/components/mdx/what-included";
+import { siteConfig } from "@/config/site";
 import { source } from "@/lib/source";
 
 export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
@@ -21,6 +22,31 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
   }
 
   const MDX = page.data.body;
+
+  const breadcrumbData = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteConfig.url,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Docs",
+        item: `${siteConfig.url}/docs`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: page.data.title,
+        item: `${siteConfig.url}${page.url}`,
+      },
+    ],
+  });
 
   const hasToc = page.data.toc.length > 0;
 
@@ -36,6 +62,11 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
       tableOfContent={tableOfContent}
       toc={page.data.toc}
     >
+      <script
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: static schema.org JSON-LD built from page data
+        dangerouslySetInnerHTML={{ __html: breadcrumbData }}
+        type="application/ld+json"
+      />
       <DocsTitle className="ml-8 font-semibold text-4xl tracking-tighter">
         {page.data.title}
       </DocsTitle>
@@ -71,8 +102,32 @@ export async function generateMetadata(props: {
     return notFound();
   }
 
+  const ogImage = {
+    url: ["/docs-og", ...(params.slug ?? []), "image.png"].join("/"),
+    width: 1200,
+    height: 630,
+    alt: page.data.title,
+  };
+
   return {
     title: page.data.title,
     description: page.data.description,
+    alternates: {
+      canonical: page.url,
+    },
+    openGraph: {
+      title: page.data.title,
+      description: page.data.description,
+      url: page.url,
+      siteName: siteConfig.name,
+      type: "article",
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: page.data.title,
+      description: page.data.description,
+      images: [ogImage],
+    },
   };
 }

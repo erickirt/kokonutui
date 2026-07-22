@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
+import { siteConfig } from "@/config/site";
 import { source } from "@/lib/source";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date();
-  const baseUrl = "https://kokonutui.com";
+  const baseUrl = siteConfig.url;
 
   // Base URLs
   const baseUrls: MetadataRoute.Sitemap = [

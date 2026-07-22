@@ -1,7 +1,6 @@
 export const siteConfig = {
   name: "KokonutUI",
   url: "https://kokonutui.com",
-  ogImage: "https://kokonutui.com/opengraph-image.png",
   description:
     "Collection of 100+ stunning UI components free and open source built with Next.js, React, Tailwind CSS, and Motion.",
   links: {

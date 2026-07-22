@@ -4,8 +4,9 @@ import { Footer } from "@/components/layout/footer";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Kokonut UI - Open Source Components",
-    default: "Kokonut UI - Open Source Components",
+    template: "%s | KokonutUI - Open Source Components",
+    default:
+      "KokonutUI - Free Open Source UI Components for React and Tailwind CSS",
   },
 };
 

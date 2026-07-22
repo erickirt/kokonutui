@@ -4,143 +4,143 @@ Collection of 100+ stunning UI components free and open source built with Next.j
 
 ## Components
 
-**Action Search Bar** - Action Bar with shortcuts, and smooth dropdown animation.
-https://kokonutui.com/docs/components/action-search-bar
+**Action Search Bar** - Search bar with debounced input, shortcut hints, and an animated action suggestions dropdown, built with React, Motion, and Tailwind CSS.
+https://kokonutui.com/docs/navigation/action-search-bar
 
-**AI Input Search** - AI input with search mode.
-https://kokonutui.com/docs/components/ai-input-search
+**AI Input Search** - AI search chat input with toggleable web search mode, file attachment and auto-resizing textarea. Built with React, Tailwind CSS and Motion.
+https://kokonutui.com/docs/ai/ai-input-search
 
-**AI Input Selector** - My own style of chat AI input.
-https://kokonutui.com/docs/components/ai-prompt
+**AI Input Selector** - Animated AI chat input with model selection dropdown, file attachment and auto-resizing textarea. Built with React, Tailwind CSS and Motion.
+https://kokonutui.com/docs/ai/ai-prompt
 
-**AI State Loading** - Code loading pending.
-https://kokonutui.com/docs/components/ai-loading
+**AI State Loading** - Animated AI loading state cycling task statuses through a scrolling code-style log with an SVG progress spinner. Built with React and Tailwind CSS.
+https://kokonutui.com/docs/ai/ai-loading
 
-**AI Text Loading** - Thinking mode.
-https://kokonutui.com/docs/components/ai-text-loading
+**AI Text Loading** - Animated AI thinking indicator that cycles status messages with a shimmering gradient text effect. Built with React, Tailwind CSS and Motion.
+https://kokonutui.com/docs/ai/ai-text-loading
 
-**AI Voice** - Voice mode.
-https://kokonutui.com/docs/components/ai-voice
+**AI Voice** - AI voice input button with recording timer, pulsing waveform bars and listening state. Built with React and animated Tailwind CSS styles.
+https://kokonutui.com/docs/ai/ai-voice
 
-**Apple Activity Card** - Inspired by Apple activity app.
-https://kokonutui.com/docs/components/apple-activity-card
+**Apple Activity Card** - Animated activity rings card inspired by the Apple Fitness app, with progress circles built in React using Tailwind CSS and Motion animations.
+https://kokonutui.com/docs/cards/apple-activity-card
 
-**Avatar Picker** - Avatar picker with rotation animation.
-https://kokonutui.com/docs/components/avatar-picker
+**Avatar Picker** - Animated avatar picker with SVG avatar options, colored selection ring and username input. Built with React, Tailwind CSS and Motion.
+https://kokonutui.com/docs/inputs/avatar-picker
 
-**Background Paths** - Drawed line paths in the middle.
-https://kokonutui.com/docs/components/background-paths
+**Background Paths** - Animated background of flowing SVG line paths drawn across the hero section. Built with React, Tailwind CSS and Motion path animations.
+https://kokonutui.com/docs/backgrounds/background-paths
 
-**Beams Background** - Animated Beams in the background that are customizable.
-https://kokonutui.com/docs/components/beams-background
+**Beams Background** - Animated background of drifting light beams rendered on an HTML canvas with configurable intensity. Built with React, Tailwind CSS and Motion.
+https://kokonutui.com/docs/backgrounds/beams-background
 
-**Bento Grid** - Grid of 4 cards with different content and animations.
-https://kokonutui.com/docs/components/bento-grid
+**Bento Grid** - Responsive bento grid of feature cards with animated charts, counters and timelines, built with React, Tailwind CSS and Motion animations.
+https://kokonutui.com/docs/cards/bento-grid
 
-**Card Flip** - Animated flip card with gradient button and animation.
-https://kokonutui.com/docs/components/card-flip
+**Card Flip** - Interactive card that flips in 3D on hover to reveal features and a call to action, built with React and Tailwind CSS transforms and transitions.
+https://kokonutui.com/docs/cards/card-flip
 
-**Carousel Cards** - Horizontal scroll carousel with card navigation, ratings, and smooth scroll controls.
-https://kokonutui.com/docs/components/carousel-cards
+**Carousel Cards** - Horizontally scrolling card carousel with ratings, badges and arrow navigation, built with React, Tailwind CSS and shadcn/ui primitives.
+https://kokonutui.com/docs/cards/carousel-cards
 
-**Command Button** - Command button for shortcut.
-https://kokonutui.com/docs/components/command-button
+**Command Button** - Keyboard shortcut button with a Command icon, hover shimmer sweep, and smooth CSS transitions, built with React and Tailwind CSS.
+https://kokonutui.com/docs/buttons/command-button
 
-**Currency Transfer** - Multiples step animation transaction inspired.
-https://kokonutui.com/docs/components/currency-transfer
+**Currency Transfer** - Multi-step currency exchange card with animated progress and SVG checkmark confirmation, built with React, Tailwind CSS and Motion animations.
+https://kokonutui.com/docs/cards/currency-transfer
 
-**Dynamic Text** - Dynamic switcher text.
-https://kokonutui.com/docs/components/dynamic-text
+**Dynamic Text** - Animated text switcher that cycles through greetings in multiple languages, built with React, Tailwind CSS and Motion enter and exit transitions.
+https://kokonutui.com/docs/texts/dynamic-text
 
-**File Upload** - File upload with special uploading animation. Make sure to try the drag and drop.
-https://kokonutui.com/docs/components/file-upload
+**File Upload** - Drag and drop file upload with animated progress, file validation and error states. Built with React, Tailwind CSS and Motion animations.
+https://kokonutui.com/docs/inputs/file-upload
 
-**Flow Field** - Canvas particle flow field background — organic noise-driven streams of glowing light.
-https://kokonutui.com/docs/components/flow-field
+**Flow Field** - Canvas particle flow field background with noise-driven streams of glowing light, color themes and density options. Built with React and Motion.
+https://kokonutui.com/docs/backgrounds/flow-field
 
-**Glitch Text** - Why not?
-https://kokonutui.com/docs/components/glitch-text
+**Glitch Text** - Customizable glitch text effect with adjustable intensity, colors and sizes, animated in React with Motion and styled with Tailwind CSS.
+https://kokonutui.com/docs/texts/glitch-text
 
-**Gradient Button** - This look more hard than it looks.
-https://kokonutui.com/docs/components/gradient-button
+**Gradient Button** - Layered gradient button with emerald, purple, and orange variants, soft inner glow, and hover overlay, styled entirely with Tailwind CSS in React.
+https://kokonutui.com/docs/buttons/gradient-button
 
-**Hold Button** - Hold Button with different hold duration and colors.
-https://kokonutui.com/docs/components/hold-button
+**Hold Button** - Press-and-hold confirmation button with an animated progress fill, configurable hold duration, and color variants, built with React and Motion.
+https://kokonutui.com/docs/buttons/hold-button
 
-**Liquid Glass** - Liquid Glass inspired by @Apple
-https://kokonutui.com/docs/components/liquid-glass-card
+**Liquid Glass** - Apple-inspired liquid glass card and buttons using SVG displacement filters for a refractive effect, built with React and Tailwind CSS.
+https://kokonutui.com/docs/cards/liquid-glass-card
 
-**Loader** - Simple Loading
-https://kokonutui.com/docs/components/loader
+**Loader** - Animated loading indicator with rotating gradient rings, size variants and customizable title text. Built with React, Tailwind CSS and Motion.
+https://kokonutui.com/docs/inputs/loader
 
-**Magnet Button** - Attract particles button!
-https://kokonutui.com/docs/components/attract-button
+**Magnet Button** - Magnetic button that pulls floating particles to its center on hover using Motion spring animations, built with React and Tailwind CSS.
+https://kokonutui.com/docs/buttons/attract-button
 
-**Matrix Text** - "010110010110111101110101011100100010000001110111011001010110110001100011011011110110110101100101"
-https://kokonutui.com/docs/components/matrix-text
+**Matrix Text** - Matrix-style text effect where letters scramble through binary characters before revealing, built with React, Tailwind CSS and Motion animations.
+https://kokonutui.com/docs/texts/matrix-text
 
-**Morphic Navbar** - A dynamic navbar with morphing animation effects between active states.
-https://kokonutui.com/docs/components/morphic-navbar
+**Morphic Navbar** - Navigation bar whose active link morphs into a rounded pill with smooth CSS transitions, built with React, Next.js Link, and Tailwind CSS.
+https://kokonutui.com/docs/navigation/morphic-navbar
 
-**Mouse Effect Card** - Interactive card with animated dot pattern that responds to mouse movement.
-https://kokonutui.com/docs/components/mouse-effect-card
+**Mouse Effect Card** - Interactive card with an animated dot pattern that repels away from the cursor, powered by React, Tailwind CSS and Motion spring physics.
+https://kokonutui.com/docs/cards/mouse-effect-card
 
-**Particle Button** - Particle Button Animation on click.
-https://kokonutui.com/docs/components/particle-button
+**Particle Button** - Button that bursts animated particles from its center on click with a quick scale press effect, built with React, Motion, and Tailwind CSS.
+https://kokonutui.com/docs/buttons/particle-button
 
-**Profile Dropdown** - Menu dropdown with action buttons.
-https://kokonutui.com/docs/components/profile-dropdown
+**Profile Dropdown** - User profile dropdown menu with avatar, subscription and model details, and quick action links, built with React, shadcn/ui, and Tailwind CSS.
+https://kokonutui.com/docs/navigation/profile-dropdown
 
-**Scroll Text** - Animated on scroll texts.
-https://kokonutui.com/docs/components/scroll-text
+**Scroll Text** - Scroll-driven text list that highlights the active word as you scroll, using IntersectionObserver with React, Tailwind CSS and Motion animations.
+https://kokonutui.com/docs/texts/scroll-text
 
-**Shapes Hero** - Shapes that fall from the top.
-https://kokonutui.com/docs/components/shape-hero
+**Shapes Hero** - Hero section with translucent geometric shapes that drop in and float over a gradient backdrop. Built with React, Tailwind CSS and Motion.
+https://kokonutui.com/docs/backgrounds/shape-hero
 
-**Shimmer Text** - Quite fancy.
-https://kokonutui.com/docs/components/shimmer-text
+**Shimmer Text** - Animated shimmer text with a looping gradient sweep across the letters, built with React, Tailwind CSS gradients and Motion animations.
+https://kokonutui.com/docs/texts/shimmer-text
 
-**Sliced Text** - I haven't found any usage for that component, but i like it.
-https://kokonutui.com/docs/components/sliced-text
+**Sliced Text** - Text effect that splits into two offset slices and merges together on hover using clip-path, built with React, Tailwind CSS and Motion animations.
+https://kokonutui.com/docs/texts/sliced-text
 
-**Slide Text Button** - An animated button with vertical slide text transition effect
-https://kokonutui.com/docs/components/slide-text-button
+**Slide Text Button** - Animated link button with a vertical text slide on hover and default and ghost variants, built with React, Motion, and Tailwind CSS.
+https://kokonutui.com/docs/buttons/slide-text-button
 
-**Smooth Drawer** - Smooth slide-in drawer. (this was harder than i thought to make that one)
-https://kokonutui.com/docs/components/smooth-drawer
+**Smooth Drawer** - Bottom drawer with spring-based slide-in and staggered content reveal, built on Vaul with React, Motion, and Tailwind CSS.
+https://kokonutui.com/docs/navigation/smooth-drawer
 
-**Smooth Tab** - Animated tab switcher.
-https://kokonutui.com/docs/components/smooth-tab
+**Smooth Tab** - Animated tab switcher with a sliding active indicator and smooth card content transitions, built with React, Motion, and Tailwind CSS.
+https://kokonutui.com/docs/navigation/smooth-tab
 
-**Social Button** - Animated Social show-up
-https://kokonutui.com/docs/components/social-button
+**Social Button** - Share button that expands into a row of social icon buttons with staggered Motion animations on hover, built with React and Tailwind CSS.
+https://kokonutui.com/docs/buttons/social-button
 
-**Spotlight Cards** - Feature grid with aurora ambient glow, magnetic 3D card tilt, and focus-dim siblings.
-https://kokonutui.com/docs/components/spotlight-cards
+**Spotlight Cards** - Feature card grid with ambient aurora glow, magnetic 3D tilt and focus dimming on hover, built with React, Tailwind CSS and Motion springs.
+https://kokonutui.com/docs/cards/spotlight-cards
 
-**Stack** - Stack of cards that expend onclick.
-https://kokonutui.com/docs/components/card-stack
+**Stack** - Stack of product cards that expands on click to reveal details and specs, animated with Motion and styled with React and Tailwind CSS.
+https://kokonutui.com/docs/cards/card-stack
 
-**Switch Button** - Animated shadow theme switcher button.
-https://kokonutui.com/docs/components/switch-button
+**Switch Button** - Light and dark theme toggle button with a rotating sun icon and shimmer hover effect, built with React, next-themes, and Tailwind CSS.
+https://kokonutui.com/docs/buttons/switch-button
 
-**Swoosh Text** - Nike inspired Text
-https://kokonutui.com/docs/components/swoosh-text
+**Swoosh Text** - Hover text effect with layered colorful shadows that snap flat on mouseover, built with React, Tailwind CSS and Motion hover animations.
+https://kokonutui.com/docs/texts/swoosh-text
 
-**Team Selector** - Group selector with a different style.
-https://kokonutui.com/docs/components/team-selector
+**Team Selector** - Animated team size selector with stacked overlapping avatars, spring transitions and increment controls. Built with React, Tailwind CSS and Motion.
+https://kokonutui.com/docs/inputs/team-selector
 
-**Toolbar** - Multiples actions toolbar inspired by Figma.
-https://kokonutui.com/docs/components/toolbar
+**Toolbar** - Figma-inspired toolbar where the selected tool expands to reveal its label with spring animations, built with React, Motion, and Tailwind CSS.
+https://kokonutui.com/docs/navigation/toolbar
 
-**Typing Text** - Animated TypeWritter with multiples options.
-https://kokonutui.com/docs/components/type-writer
+**Typing Text** - Typewriter text animation that types and deletes multiple sequences with a blinking cursor and auto loop, built with React and Motion.
+https://kokonutui.com/docs/texts/type-writer
 
-**V0 Button** - Open in V0.
-https://kokonutui.com/docs/components/v0-button
+**V0 Button** - Open in v0 button that sends a component registry JSON to v0.dev for instant editing, built with React, the shadcn Button, and Tailwind CSS.
+https://kokonutui.com/docs/buttons/v0-button
 
-**X Card** - Gradient on hover X card. (The post is real!)
-https://kokonutui.com/docs/components/tweet-card
+**X Card** - X (Twitter) style post card with author details, verified badge, reply thread and hover gradient, built with React and Tailwind CSS.
+https://kokonutui.com/docs/cards/tweet-card
 
 ## Templates and Premium Components (Kokonut UI Pro)
 

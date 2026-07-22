@@ -8,6 +8,11 @@ import { registry } from "../registry/index";
 const REGISTRY_BASE_PATH = process.cwd();
 const PUBLIC_FOLDER_BASE_PATH = "public/r";
 
+const BACKSLASH_REGEX = /\\/g;
+const DOCS_PREFIX_REGEX = /^content\/docs\//;
+const MDX_EXTENSION_REGEX = /\.mdx$/;
+const LEADING_SLASH_REGEX = /^\//;
+
 // Console colors and symbols
 const colors = {
   reset: "\x1b[0m",
@@ -65,6 +70,8 @@ interface ComponentInfo {
   name: string;
   title: string;
   description: string;
+  /** Canonical docs route, e.g. "/docs/buttons/gradient-button" */
+  route: string;
 }
 
 const extractFrontmatter = (
@@ -101,10 +108,15 @@ const getComponentsInfo = async (): Promise<ComponentInfo[]> => {
 
         if (frontmatter.title && frontmatter.description) {
           const name = path.basename(mdxFile, ".mdx");
+          const route = `/docs/${mdxFile
+            .replace(BACKSLASH_REGEX, "/")
+            .replace(DOCS_PREFIX_REGEX, "")
+            .replace(MDX_EXTENSION_REGEX, "")}`;
           components.push({
             name,
             title: frontmatter.title,
             description: frontmatter.description,
+            route,
           });
         }
       } catch (error) {
@@ -133,7 +145,7 @@ Collection of 100+ stunning UI components free and open source built with Next.j
 ${components
   .map(
     (component) =>
-      `**${component.title}** - ${component.description}\nhttps://kokonutui.com/docs/components/${component.name}`
+      `**${component.title}** - ${component.description}\nhttps://kokonutui.com${component.route}`
   )
   .join("\n\n")}
 
@@ -167,6 +179,83 @@ https://kokonutui.pro/components
   } catch (error) {
     console.error(
       `  ${colors.red}${symbols.error} Error writing LLMs.txt file${colors.reset}`
+    );
+    console.error(error);
+  }
+};
+
+const getComponentSource = async (
+  componentName: string
+): Promise<{ path: string; content: string } | null> => {
+  const registryItem = registry.find((item) => item.name === componentName);
+  const firstFile = registryItem?.files?.[0];
+  if (!firstFile) {
+    return null;
+  }
+
+  const filePath = typeof firstFile === "string" ? firstFile : firstFile.path;
+  const normalizedPath = filePath.startsWith("/") ? filePath : `/${filePath}`;
+
+  try {
+    const content = await fs.readFile(
+      path.join(REGISTRY_BASE_PATH, normalizedPath),
+      "utf-8"
+    );
+    return { path: normalizedPath, content };
+  } catch {
+    return null;
+  }
+};
+
+const generateLLMsFullFile = async (
+  components: ComponentInfo[]
+): Promise<void> => {
+  const sections = await Promise.all(
+    components.map(async (component) => {
+      const source = await getComponentSource(component.name);
+      const sourceBlock = source
+        ? `\n\n\`\`\`tsx\n// ${source.path.replace(LEADING_SLASH_REGEX, "")}\n${source.content.trimEnd()}\n\`\`\``
+        : "";
+
+      return `## ${component.title}
+
+${component.description}
+
+- Docs: https://kokonutui.com${component.route}
+- Install: npx shadcn@latest add @kokonutui/${component.name}
+- Registry JSON: https://kokonutui.com/r/${component.name}.json${sourceBlock}`;
+    })
+  );
+
+  const llmsFullContent = `# KokonutUI - Full Component Reference
+
+Collection of 100+ stunning UI components free and open source built with Next.js, React, Tailwind CSS, and Motion.
+
+Install any component into a shadcn/ui project with: npx shadcn@latest add @kokonutui/<component-name>
+
+Each section below contains a component's description, documentation URL, install command, and full source code.
+
+${sections.join("\n\n---\n\n")}
+
+## Links
+
+- Website: https://kokonutui.com
+- Github: https://github.com/kokonut-labs/kokonutui
+- Component index: https://kokonutui.com/llms.txt
+`;
+
+  try {
+    await fs.writeFile(
+      path.join(REGISTRY_BASE_PATH, "public/llms-full.txt"),
+      llmsFullContent,
+      "utf-8"
+    );
+    console.log(
+      `  ${colors.green}${symbols.success}${colors.reset} llms-full.txt file updated with ${components.length} components`
+    );
+  } catch (error) {
+    console.error(
+      `  ${colors.red}${symbols.error} Error writing llms-full.txt file${colors.reset}`
     );
     console.error(error);
   }
@@ -276,6 +365,7 @@ const main = async () => {
   );
   const componentsInfo = await getComponentsInfo();
   await generateLLMsFile(componentsInfo);
+  await generateLLMsFullFile(componentsInfo);
 
   printDivider();
 };

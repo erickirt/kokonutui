@@ -126,7 +126,26 @@ export default function AILoadingState() {
   >([]);
   const [scrollPosition, setScrollPosition] = useState(0);
   const codeContainerRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(true);
   const lineHeight = 28;
+
+  // Only animate while on screen — an off-screen interval keeps waking the
+  // main thread and re-rendering for a component nobody can see.
+  useEffect(() => {
+    const element = rootRef.current;
+    if (!element) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { rootMargin: "100px" }
+    );
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
 
   const currentSequence = TASK_SEQUENCES[sequenceIndex];
   const totalLines = currentSequence.lines.length;
@@ -145,6 +164,10 @@ export default function AILoadingState() {
 
   // Handle line advancement
   useEffect(() => {
+    if (!isVisible) {
+      return;
+    }
+
     const advanceTimer = setInterval(() => {
       // Get the current first visible line index
       const firstVisibleLineIndex = Math.floor(scrollPosition / lineHeight);
@@ -175,6 +198,7 @@ export default function AILoadingState() {
 
     return () => clearInterval(advanceTimer);
   }, [
+    isVisible,
     scrollPosition,
     visibleLines,
     totalLines,
@@ -191,7 +215,10 @@ export default function AILoadingState() {
   }, [scrollPosition]);
 
   return (
-    <div className="flex min-h-full w-full items-center justify-center">
+    <div
+      className="flex min-h-full w-full items-center justify-center"
+      ref={rootRef}
+    >
       <div className="w-auto space-y-4">
         <div className="ml-2 flex items-center space-x-2 font-medium text-gray-600 dark:text-gray-300">
           <LoadingAnimation

@@ -320,9 +320,28 @@ ProgressBar.displayName = "ProgressBar";
 export function NotificationCenter() {
   const [isPlaying, setIsPlaying] = React.useState(true);
   const [currentTime, setCurrentTime] = React.useState(MIN_TIME);
+  const rootRef = React.useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = React.useState(true);
+
+  // Only tick while on screen — an off-screen interval keeps waking the main
+  // thread and re-rendering for a component nobody can see.
+  React.useEffect(() => {
+    const element = rootRef.current;
+    if (!element) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { rootMargin: "100px" }
+    );
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
 
   React.useEffect(() => {
-    if (!isPlaying) {
+    if (!(isPlaying && isVisible)) {
       return;
     }
 
@@ -333,7 +352,7 @@ export function NotificationCenter() {
     }, TIMER_INTERVAL_MS);
 
     return () => clearInterval(intervalId);
-  }, [isPlaying]);
+  }, [isPlaying, isVisible]);
 
   React.useEffect(() => {
     if (currentTime >= TOTAL_DURATION) {
@@ -353,7 +372,7 @@ export function NotificationCenter() {
   };
 
   return (
-    <div className="w-full max-w-sm">
+    <div className="w-full max-w-sm" ref={rootRef}>
       <LiquidGlassCard className="gap-3.5 rounded-3xl border border-zinc-200/60 bg-gradient-to-br from-zinc-50 to-zinc-100 p-4 shadow-xl dark:border-zinc-700/60 dark:from-zinc-900 dark:to-black">
         <div className="flex items-center gap-3">
           <div className="relative mr-2 mb-4 h-16 w-16 shrink-0 overflow-hidden rounded-2xl bg-gradient-to-br from-pink-400 via-pink-300 to-rose-200 shadow-lg ring-1 ring-black/5 dark:shadow-xl">

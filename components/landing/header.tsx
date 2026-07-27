@@ -1,7 +1,6 @@
 import { cacheLife, cacheTag } from "next/cache";
 import Image from "next/image";
 import Link from "next/link";
-import { Link as ViewTransitionsLink } from "next-view-transitions";
 import { Suspense } from "react";
 import { ThemeToggle } from "@/lib/theme-toggle";
 import { HeaderPro } from "./header-pro";
@@ -62,7 +61,7 @@ export function Header() {
       <div className="w-full bg-white dark:bg-black">
         <div className="flex w-full flex-col items-center justify-center">
           <HeaderPro />
-          <div className="relative flex w-full items-center justify-between px-6 py-3.5 transition-all duration-300 ease-in-out">
+          <div className="relative flex w-full items-center justify-between px-6 py-3.5">
             <div className="relative z-10 mx-auto flex w-full max-w-[1400px] items-center justify-between gap-2">
               <div className="flex items-center gap-6">
                 <Link className="flex items-center gap-2" href="/">
@@ -73,31 +72,31 @@ export function Header() {
                 </Link>
                 <span className="text-zinc-300 dark:text-zinc-700">|</span>
                 <div className="hidden items-center gap-0.5 sm:flex">
-                  <ViewTransitionsLink
-                    className="flex items-center gap-1 rounded-lg px-3 py-1 font-medium text-[15px] text-black/80 tracking-tighter transition-all duration-200 hover:bg-black/5 dark:text-white/80 dark:hover:bg-white/5"
+                  <Link
+                    className="flex items-center gap-1 rounded-lg px-3 py-1 font-medium text-[15px] text-black/80 tracking-tighter transition-colors duration-200 hover:bg-black/5 dark:text-white/80 dark:hover:bg-white/5"
                     href="/docs/components/action-search-bar"
                   >
                     Components
-                  </ViewTransitionsLink>
+                  </Link>
                   <Link
-                    className="flex items-center gap-1 rounded-lg px-3 py-1 font-medium text-[15px] text-black/80 tracking-tighter transition-all duration-200 hover:bg-black/5 dark:text-white/80 dark:hover:bg-white/5"
+                    className="flex items-center gap-1 rounded-lg px-3 py-1 font-medium text-[15px] text-black/80 tracking-tighter transition-colors duration-200 hover:bg-black/5 dark:text-white/80 dark:hover:bg-white/5"
                     href="https://kokonutui.pro/templates?utm_source=kokonutui.com&utm_medium=header"
                     target="_blank"
                   >
                     Templates
                   </Link>
-                  <ViewTransitionsLink
-                    className="flex items-center gap-1 rounded-lg px-3 py-1 font-medium text-[15px] text-black/80 tracking-tighter transition-all duration-200 hover:bg-black/5 dark:text-white/80 dark:hover:bg-white/5"
+                  <Link
+                    className="flex items-center gap-1 rounded-lg px-3 py-1 font-medium text-[15px] text-black/80 tracking-tighter transition-colors duration-200 hover:bg-black/5 dark:text-white/80 dark:hover:bg-white/5"
                     href="/#testimonials"
                   >
                     Testimonials
-                  </ViewTransitionsLink>
+                  </Link>
                 </div>
               </div>
 
               <div className="hidden items-center gap-3 sm:flex">
                 <Link
-                  className="group relative inline-flex items-center gap-2 rounded-md border border-transparent px-3 py-1.5 text-sm text-zinc-600 transition-all hover:border-zinc-200 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:border-zinc-800 dark:hover:bg-zinc-900 dark:hover:text-zinc-100"
+                  className="group relative inline-flex items-center gap-2 rounded-md border border-transparent px-3 py-1.5 text-sm text-zinc-600 transition-colors hover:border-zinc-200 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:border-zinc-800 dark:hover:bg-zinc-900 dark:hover:text-zinc-100"
                   href="https://github.com/kokonut-labs/kokonutui"
                   target="_blank"
                 >
@@ -116,7 +115,7 @@ export function Header() {
                   </div>
                 </Link>
                 <Link
-                  className="group relative inline-flex items-center gap-2 rounded-md border border-transparent px-2 py-2 text-sm text-zinc-600 transition-all hover:border-zinc-200 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:border-zinc-800 dark:hover:bg-zinc-900 dark:hover:text-zinc-100"
+                  className="group relative inline-flex items-center gap-2 rounded-md border border-transparent px-2 py-2 text-sm text-zinc-600 transition-colors hover:border-zinc-200 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:border-zinc-800 dark:hover:bg-zinc-900 dark:hover:text-zinc-100"
                   href="https://x.com/dorianbaffier"
                   target="_blank"
                 >
@@ -134,19 +133,19 @@ export function Header() {
               </div>
 
               <div className="flex items-center gap-4 sm:hidden">
-                <ViewTransitionsLink
-                  className="rounded-md border border-transparent px-3 py-1.5 text-sm text-zinc-600 transition-all hover:border-zinc-200 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:border-zinc-800 dark:hover:bg-zinc-900 dark:hover:text-zinc-100"
+                <Link
+                  className="rounded-md border border-transparent px-3 py-1.5 text-sm text-zinc-600 transition-colors hover:border-zinc-200 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:border-zinc-800 dark:hover:bg-zinc-900 dark:hover:text-zinc-100"
                   href="/docs/components/action-search-bar"
                 >
                   Components
-                </ViewTransitionsLink>
-                <ViewTransitionsLink
-                  className="rounded-md border border-transparent px-3 py-1.5 text-sm text-zinc-600 transition-all hover:border-zinc-200 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:border-zinc-800 dark:hover:bg-zinc-900 dark:hover:text-zinc-100"
+                </Link>
+                <Link
+                  className="rounded-md border border-transparent px-3 py-1.5 text-sm text-zinc-600 transition-colors hover:border-zinc-200 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:border-zinc-800 dark:hover:bg-zinc-900 dark:hover:text-zinc-100"
                   href="https://kokonutui.pro/templates?utm_source=kokonutui.com&utm_medium=header"
                   target="_blank"
                 >
                   Templates
-                </ViewTransitionsLink>
+                </Link>
                 <ThemeToggle />
               </div>
             </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { DURATION, EASE_OUT, STAGGER } from "@/lib/animation-presets";
 import Motion from "../icons/motion";
 import Nextjs from "../icons/nextjs";
@@ -114,43 +114,35 @@ const FeatureCardsGrid = ({
       </motion.div>
       <div className="relative">
         <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
-          <AnimatePresence mode="popLayout">
-            {cards.map((card, index) => (
-              <motion.div
-                className="relative h-full"
-                exit={
-                  reduceMotion
-                    ? { opacity: 0 }
-                    : { opacity: 0, y: -12, scale: 0.97 }
-                }
-                initial={
-                  reduceMotion
-                    ? { opacity: 0 }
-                    : { opacity: 0, y: 24, scale: 0.97 }
-                }
-                key={`${card.title}-${index}`}
-                layout
-                style={{ zIndex: 10 }}
-                transition={{
-                  duration: DURATION.marketing,
-                  delay: index * STAGGER.relaxed,
-                  ease: EASE_OUT,
-                }}
-                viewport={{ once: true, margin: "-50px" }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              >
-                <FeatureCard
-                  description={card.description}
-                  href={card.href}
-                  image={card.image}
-                  number={card.number}
-                  tags={card.tags}
-                  title={card.title}
-                  video={card.video}
-                />
-              </motion.div>
-            ))}
-          </AnimatePresence>
+          {cards.map((card, index) => (
+            <motion.div
+              className="relative h-full"
+              initial={
+                reduceMotion
+                  ? { opacity: 0 }
+                  : { opacity: 0, y: 24, scale: 0.97 }
+              }
+              key={`${card.title}-${index}`}
+              style={{ zIndex: 10 }}
+              transition={{
+                duration: DURATION.marketing,
+                delay: index * STAGGER.relaxed,
+                ease: EASE_OUT,
+              }}
+              viewport={{ once: true, margin: "-50px" }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            >
+              <FeatureCard
+                description={card.description}
+                href={card.href}
+                image={card.image}
+                number={card.number}
+                tags={card.tags}
+                title={card.title}
+                video={card.video}
+              />
+            </motion.div>
+          ))}
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 const stats = [
   { value: "100+", label: "Components" },
-  { value: "1.8k+", label: "GitHub Stars" },
+  { value: "2k+", label: "GitHub Stars" },
   { value: "7+", label: "Templates" },
   { value: "100%", label: "Free & Open Source" },
 ] as const;

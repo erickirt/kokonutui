@@ -90,16 +90,6 @@ export function Footer() {
               <li>
                 <Link
                   className="text-black/70 text-sm transition-colors hover:text-black dark:text-white/70 dark:hover:text-white"
-                  href="https://aris.studio"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  Aris Studio
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="text-black/70 text-sm transition-colors hover:text-black dark:text-white/70 dark:hover:text-white"
                   href={siteConfig.links.twitter}
                   rel="noopener noreferrer"
                   target="_blank"

@@ -5,7 +5,7 @@ import {
   DocsTitle,
   MarkdownCopyButton,
   ViewOptionsPopover,
-} from "fumadocs-ui/layouts/glass/page";
+} from "fumadocs-ui/layouts/docs/page";
 import defaultMdxComponents, { createRelativeLink } from "fumadocs-ui/mdx";
 import { notFound } from "next/navigation";
 import TocProBanner from "@/components/landing/toc-pro-banner";
@@ -77,11 +77,22 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
   const markdownUrl = `${page.url}.md`;
   const githubUrl = `${siteConfig.links.github}/blob/main/content/docs/${page.path}`;
 
-  // The Glass layout owns page spacing, so the previous `ml-8` offsets that
-  // aligned content against the notebook sidebar are gone.
+  // Component pages are Preview/WhatIncluded blocks with no markdown headings,
+  // so the default TOC would render nothing but its "No Headings" empty state.
+  // Those pages drop the heading list and show the Pro banner on its own; pages
+  // that do have headings keep the real TOC with the banner underneath.
+  const hasHeadings = page.data.toc.length > 0;
   const tableOfContent = page.data.full
     ? undefined
-    : { footer: <TocProBanner /> };
+    : {
+        // Keep the TOC enabled either way — it owns the column the banner sits
+        // in — but hide the "On this page" heading and its empty state when
+        // there is nothing to list.
+        container: hasHeadings
+          ? undefined
+          : { className: "toc-headings-empty" },
+        footer: <TocProBanner />,
+      };
 
   return (
     <DocsPage
@@ -94,10 +105,10 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
         dangerouslySetInnerHTML={{ __html: breadcrumbData }}
         type="application/ld+json"
       />
-      <DocsTitle className="font-semibold text-4xl tracking-tighter">
+      <DocsTitle className="font-semibold text-4xl">
         {page.data.title}
       </DocsTitle>
-      <DocsDescription className="text-xl tracking-tighter">
+      <DocsDescription className="text-xl">
         {page.data.description}
       </DocsDescription>
       <div className="flex flex-row items-center gap-2">

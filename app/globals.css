@@ -4,7 +4,6 @@
 
 @import "fumadocs-ui/css/preset.css";
 @import "fumadocs-ui/css/neutral.css";
-@import "fumadocs-ui/css/generated/glass.css";
 /* @import "fumadocs-ui/css/shadcn.css"; */
 /* @import "fumadocs-ui/css/black.css"; */
 /* @import "fumadocs-ui/css/catppuccin.css"; */
@@ -195,29 +194,32 @@ button {
 }
 
 /*
-  On `full: true` pages the layout widens to 1200px, but the preview box keeps
-  its `md:p-8` inset and fixed 400px height, so full-bleed components (e.g.
-  backgrounds) never fill the space. Glass sets `data-fd-full` on an ancestor,
-  so the surface can follow the page without any prop drilling.
+  On `full: true` pages the layout widens, but the preview box keeps its
+  `md:p-8` inset and fixed 400px height, so full-bleed components (e.g.
+  backgrounds) never fill the space. DocsPage sets `data-full` on the
+  `#nd-page` article, so the surface can follow the page without prop drilling.
 
   `compact` previews opt out — they are deliberately small.
 */
 @media (min-width: 768px) {
-  [data-fd-full="true"] .preview-surface:not(.preview-surface-compact) {
+  #nd-page[data-full="true"] .preview-surface:not(.preview-surface-compact) {
     padding: 0;
     min-height: 70dvh;
   }
 }
 
 /*
-  The Glass layout renders sidebar links as `inline-flex` with no width, so
-  each row shrinks to its label and the hover/active background only covers
-  the text. Stretch them to fill the sidebar so the whole row is a hit target.
+  Component pages have no markdown headings, so the TOC would show only its
+  "On this page" title and a "No Headings" empty state. The column is kept for
+  the Pro banner, so hide the heading chrome and reclaim its top padding.
 */
-#nd-sidebar [data-radix-scroll-area-viewport] a,
-#nd-sidebar [data-radix-scroll-area-viewport] > p {
-  display: flex;
-  width: 100%;
+.toc-headings-empty {
+  padding-top: 1rem;
+}
+
+.toc-headings-empty #toc-title,
+.toc-headings-empty #toc-title + div {
+  display: none;
 }
 
 :root {

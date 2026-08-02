@@ -6,8 +6,8 @@ import ReactIcon from "@/components/icons/react";
 import TailwindCSS from "@/components/icons/tailwindcss";
 
 const FEATURES = [
-  "100+ templates, blocks and components",
-  "Works with any AI agent — Claude Code, Codex, Cursor, and more",
+  "100+ components to build websites faster",
+  "Works with Claude Code, Cursor and more",
   "Built with React, TypeScript and Tailwind CSS v4",
   "Animations with Motion",
   "One command installation with shadcn/cli",
@@ -47,7 +47,7 @@ export default function TocProBanner() {
       {/* Header */}
       <div className="relative">
         <span className="font-semibold text-[17px] text-foreground leading-snug tracking-tight">
-          Ship beautiful products and build websites faster
+          Kokonut UI Pro — build beautiful websites faster
         </span>
       </div>
 
@@ -82,9 +82,9 @@ export default function TocProBanner() {
 
       {/* CTA */}
       <div className="relative flex flex-col gap-2">
-        <div className="flex items-center gap-1.5 self-start rounded-lg bg-[#FF2D55] px-3 py-1.5 font-semibold text-[12px] text-white tracking-tight transition-opacity duration-200 group-hover:opacity-90">
-          Explore Pro
-          <ArrowUpRight className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        <div className="flex items-center gap-1.5 self-start text-balance rounded-lg bg-[#FF2D55] px-2.5 py-1.5 font-semibold text-[12px] text-white tracking-tight transition-opacity duration-200 group-hover:opacity-90">
+          Explore Kokonut UI - Pro
+          <ArrowUpRight className="h-3 w-3 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </div>
         <span className="text-[11px] text-muted-foreground">
           Trusted by 10k+ users worldwide

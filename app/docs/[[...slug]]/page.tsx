@@ -1,3 +1,7 @@
+import {
+  MarkdownCopyButton,
+  ViewOptionsPopover,
+} from "fumadocs-ui/layouts/notebook/page";
 import defaultMdxComponents, { createRelativeLink } from "fumadocs-ui/mdx";
 import {
   DocsBody,
@@ -48,6 +52,10 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
     ],
   });
 
+  // Powers "copy as Markdown" and the open-in-ChatGPT/Claude shortcuts.
+  const markdownUrl = `${page.url}.md`;
+  const githubUrl = `${siteConfig.links.github}/blob/main/content/docs/${page.path}`;
+
   const hasToc = page.data.toc.length > 0;
 
   const tableOfContent = page.data.full
@@ -73,6 +81,10 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
       <DocsDescription className="ml-8 text-xl tracking-tighter">
         {page.data.description}
       </DocsDescription>
+      <div className="ml-8 flex flex-row items-center gap-2">
+        <MarkdownCopyButton markdownUrl={markdownUrl} />
+        <ViewOptionsPopover githubUrl={githubUrl} markdownUrl={markdownUrl} />
+      </div>
       <DocsBody className="ml-8">
         <MDX
           components={{

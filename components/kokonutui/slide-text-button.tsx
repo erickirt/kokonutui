@@ -26,7 +26,7 @@ interface SlideTextButtonProps
 export default function SlideTextButton({
   text = "Browse Components",
   hoverText,
-  href = "/docs/cards/card-flip",
+  href = "/docs",
   className,
   variant = "default",
   ...props

@@ -11,7 +11,6 @@ const PUBLIC_FOLDER_BASE_PATH = "public/r";
 const BACKSLASH_REGEX = /\\/g;
 const DOCS_PREFIX_REGEX = /^content\/docs\//;
 const MDX_EXTENSION_REGEX = /\.mdx$/;
-const LEADING_SLASH_REGEX = /^\//;
 
 // Console colors and symbols
 const colors = {
@@ -136,18 +135,22 @@ const getComponentsInfo = async (): Promise<ComponentInfo[]> => {
 };
 
 const generateLLMsFile = async (components: ComponentInfo[]): Promise<void> => {
-  const llmsContent = `# KokonutUI - UI Component Library
+  const llmsContent = `# KokonutUI - Component Registry Index
 
-Collection of 100+ stunning UI components free and open source built with Next.js, React, Tailwind CSS, and Motion.
+Collection of ${components.length} UI components free and open source built with Next.js, React, Tailwind CSS, and Motion.
+
+Install any component with: npx shadcn@latest add @kokonutui/<component-name>
+
+The documentation index for LLMs lives at https://kokonutui.com/llms.txt
 
 ## Components
 
 ${components
   .map(
     (component) =>
-      `**${component.title}** - ${component.description}\nhttps://kokonutui.com${component.route}`
+      `- [${component.title}](https://kokonutui.com${component.route}.md): ${component.description} Install: \`npx shadcn@latest add @kokonutui/${component.name}\``
   )
-  .join("\n\n")}
+  .join("\n")}
 
 ## Templates and Premium Components (Kokonut UI Pro)
 
@@ -168,94 +171,20 @@ https://kokonutui.pro/components
 `;
 
   try {
+    // Served at /r/llms.txt. The site-wide /llms.txt and /llms-full.txt are
+    // generated at request time from the docs tree (app/llms.txt/route.ts),
+    // so they can never drift from the actual documentation.
     await fs.writeFile(
-      path.join(REGISTRY_BASE_PATH, "public/llms.txt"),
+      path.join(REGISTRY_BASE_PATH, "public/r/llms.txt"),
       llmsContent,
       "utf-8"
     );
     console.log(
-      `  ${colors.green}${symbols.success}${colors.reset} LLMs.txt file updated with ${components.length} components`
+      `  ${colors.green}${symbols.success}${colors.reset} r/llms.txt registry index updated with ${components.length} components`
     );
   } catch (error) {
     console.error(
       `  ${colors.red}${symbols.error} Error writing LLMs.txt file${colors.reset}`
-    );
-    console.error(error);
-  }
-};
-
-const getComponentSource = async (
-  componentName: string
-): Promise<{ path: string; content: string } | null> => {
-  const registryItem = registry.find((item) => item.name === componentName);
-  const firstFile = registryItem?.files?.[0];
-  if (!firstFile) {
-    return null;
-  }
-
-  const filePath = typeof firstFile === "string" ? firstFile : firstFile.path;
-  const normalizedPath = filePath.startsWith("/") ? filePath : `/${filePath}`;
-
-  try {
-    const content = await fs.readFile(
-      path.join(REGISTRY_BASE_PATH, normalizedPath),
-      "utf-8"
-    );
-    return { path: normalizedPath, content };
-  } catch {
-    return null;
-  }
-};
-
-const generateLLMsFullFile = async (
-  components: ComponentInfo[]
-): Promise<void> => {
-  const sections = await Promise.all(
-    components.map(async (component) => {
-      const source = await getComponentSource(component.name);
-      const sourceBlock = source
-        ? `\n\n\`\`\`tsx\n// ${source.path.replace(LEADING_SLASH_REGEX, "")}\n${source.content.trimEnd()}\n\`\`\``
-        : "";
-
-      return `## ${component.title}
-
-${component.description}
-
-- Docs: https://kokonutui.com${component.route}
-- Install: npx shadcn@latest add @kokonutui/${component.name}
-- Registry JSON: https://kokonutui.com/r/${component.name}.json${sourceBlock}`;
-    })
-  );
-
-  const llmsFullContent = `# KokonutUI - Full Component Reference
-
-Collection of 100+ stunning UI components free and open source built with Next.js, React, Tailwind CSS, and Motion.
-
-Install any component into a shadcn/ui project with: npx shadcn@latest add @kokonutui/<component-name>
-
-Each section below contains a component's description, documentation URL, install command, and full source code.
-
-${sections.join("\n\n---\n\n")}
-
-## Links
-
-- Website: https://kokonutui.com
-- Github: https://github.com/kokonut-labs/kokonutui
-- Component index: https://kokonutui.com/llms.txt
-`;
-
-  try {
-    await fs.writeFile(
-      path.join(REGISTRY_BASE_PATH, "public/llms-full.txt"),
-      llmsFullContent,
-      "utf-8"
-    );
-    console.log(
-      `  ${colors.green}${symbols.success}${colors.reset} llms-full.txt file updated with ${components.length} components`
-    );
-  } catch (error) {
-    console.error(
-      `  ${colors.red}${symbols.error} Error writing llms-full.txt file${colors.reset}`
     );
     console.error(error);
   }
@@ -365,7 +294,6 @@ const main = async () => {
   );
   const componentsInfo = await getComponentsInfo();
   await generateLLMsFile(componentsInfo);
-  await generateLLMsFullFile(componentsInfo);
 
   printDivider();
 };

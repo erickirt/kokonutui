@@ -1,0 +1,73 @@
+# KokonutUI - Component Registry Index
+
+Collection of 46 UI components free and open source built with Next.js, React, Tailwind CSS, and Motion.
+
+Install any component with: npx shadcn@latest add @kokonutui/<component-name>
+
+The documentation index for LLMs lives at https://kokonutui.com/llms.txt
+
+## Components
+
+- [Action Search Bar](https://kokonutui.com/docs/navigation/action-search-bar.md): Search bar with debounced input, shortcut hints, and an animated action suggestions dropdown, built with React, Motion, and Tailwind CSS. Install: `npx shadcn@latest add @kokonutui/action-search-bar`
+- [AI Input Search](https://kokonutui.com/docs/ai/ai-input-search.md): AI search chat input with toggleable web search mode, file attachment and auto-resizing textarea. Built with React, Tailwind CSS and Motion. Install: `npx shadcn@latest add @kokonutui/ai-input-search`
+- [AI Input Selector](https://kokonutui.com/docs/ai/ai-prompt.md): Animated AI chat input with model selection dropdown, file attachment and auto-resizing textarea. Built with React, Tailwind CSS and Motion. Install: `npx shadcn@latest add @kokonutui/ai-prompt`
+- [AI State Loading](https://kokonutui.com/docs/ai/ai-loading.md): Animated AI loading state cycling task statuses through a scrolling code-style log with an SVG progress spinner. Built with React and Tailwind CSS. Install: `npx shadcn@latest add @kokonutui/ai-loading`
+- [AI Text Loading](https://kokonutui.com/docs/ai/ai-text-loading.md): Animated AI thinking indicator that cycles status messages with a shimmering gradient text effect. Built with React, Tailwind CSS and Motion. Install: `npx shadcn@latest add @kokonutui/ai-text-loading`
+- [AI Voice](https://kokonutui.com/docs/ai/ai-voice.md): AI voice input button with recording timer, pulsing waveform bars and listening state. Built with React and animated Tailwind CSS styles. Install: `npx shadcn@latest add @kokonutui/ai-voice`
+- [Apple Activity Card](https://kokonutui.com/docs/cards/apple-activity-card.md): Animated activity rings card inspired by the Apple Fitness app, with progress circles built in React using Tailwind CSS and Motion animations. Install: `npx shadcn@latest add @kokonutui/apple-activity-card`
+- [Avatar Picker](https://kokonutui.com/docs/inputs/avatar-picker.md): Animated avatar picker with SVG avatar options, colored selection ring and username input. Built with React, Tailwind CSS and Motion. Install: `npx shadcn@latest add @kokonutui/avatar-picker`
+- [Background Paths](https://kokonutui.com/docs/backgrounds/background-paths.md): Animated background of flowing SVG line paths drawn across the hero section. Built with React, Tailwind CSS and Motion path animations. Install: `npx shadcn@latest add @kokonutui/background-paths`
+- [Beams Background](https://kokonutui.com/docs/backgrounds/beams-background.md): Animated background of drifting light beams rendered on an HTML canvas with configurable intensity. Built with React, Tailwind CSS and Motion. Install: `npx shadcn@latest add @kokonutui/beams-background`
+- [Bento Grid](https://kokonutui.com/docs/cards/bento-grid.md): Responsive bento grid of feature cards with animated charts, counters and timelines, built with React, Tailwind CSS and Motion animations. Install: `npx shadcn@latest add @kokonutui/bento-grid`
+- [Card Flip](https://kokonutui.com/docs/cards/card-flip.md): Interactive card that flips in 3D on hover to reveal features and a call to action, built with React and Tailwind CSS transforms and transitions. Install: `npx shadcn@latest add @kokonutui/card-flip`
+- [Carousel Cards](https://kokonutui.com/docs/cards/carousel-cards.md): Horizontally scrolling card carousel with ratings, badges and arrow navigation, built with React, Tailwind CSS and shadcn/ui primitives. Install: `npx shadcn@latest add @kokonutui/carousel-cards`
+- [Command Button](https://kokonutui.com/docs/buttons/command-button.md): Keyboard shortcut button with a Command icon, hover shimmer sweep, and smooth CSS transitions, built with React and Tailwind CSS. Install: `npx shadcn@latest add @kokonutui/command-button`
+- [Currency Transfer](https://kokonutui.com/docs/cards/currency-transfer.md): Multi-step currency exchange card with animated progress and SVG checkmark confirmation, built with React, Tailwind CSS and Motion animations. Install: `npx shadcn@latest add @kokonutui/currency-transfer`
+- [Dynamic Text](https://kokonutui.com/docs/texts/dynamic-text.md): Animated text switcher that cycles through greetings in multiple languages, built with React, Tailwind CSS and Motion enter and exit transitions. Install: `npx shadcn@latest add @kokonutui/dynamic-text`
+- [File Upload](https://kokonutui.com/docs/inputs/file-upload.md): Drag and drop file upload with animated progress, file validation and error states. Built with React, Tailwind CSS and Motion animations. Install: `npx shadcn@latest add @kokonutui/file-upload`
+- [Flow Field](https://kokonutui.com/docs/backgrounds/flow-field.md): Canvas particle flow field background with noise-driven streams of glowing light, color themes and density options. Built with React and Motion. Install: `npx shadcn@latest add @kokonutui/flow-field`
+- [Glitch Text](https://kokonutui.com/docs/texts/glitch-text.md): Customizable glitch text effect with adjustable intensity, colors and sizes, animated in React with Motion and styled with Tailwind CSS. Install: `npx shadcn@latest add @kokonutui/glitch-text`
+- [Gradient Button](https://kokonutui.com/docs/buttons/gradient-button.md): Layered gradient button with emerald, purple, and orange variants, soft inner glow, and hover overlay, styled entirely with Tailwind CSS in React. Install: `npx shadcn@latest add @kokonutui/gradient-button`
+- [Hold Button](https://kokonutui.com/docs/buttons/hold-button.md): Press-and-hold confirmation button with an animated progress fill, configurable hold duration, and color variants, built with React and Motion. Install: `npx shadcn@latest add @kokonutui/hold-button`
+- [Liquid Glass](https://kokonutui.com/docs/cards/liquid-glass-card.md): Apple-inspired liquid glass card and buttons using SVG displacement filters for a refractive effect, built with React and Tailwind CSS. Install: `npx shadcn@latest add @kokonutui/liquid-glass-card`
+- [Loader](https://kokonutui.com/docs/inputs/loader.md): Animated loading indicator with rotating gradient rings, size variants and customizable title text. Built with React, Tailwind CSS and Motion. Install: `npx shadcn@latest add @kokonutui/loader`
+- [Magnet Button](https://kokonutui.com/docs/buttons/attract-button.md): Magnetic button that pulls floating particles to its center on hover using Motion spring animations, built with React and Tailwind CSS. Install: `npx shadcn@latest add @kokonutui/attract-button`
+- [Matrix Text](https://kokonutui.com/docs/texts/matrix-text.md): Matrix-style text effect where letters scramble through binary characters before revealing, built with React, Tailwind CSS and Motion animations. Install: `npx shadcn@latest add @kokonutui/matrix-text`
+- [Morphic Navbar](https://kokonutui.com/docs/navigation/morphic-navbar.md): Navigation bar whose active link morphs into a rounded pill with smooth CSS transitions, built with React, Next.js Link, and Tailwind CSS. Install: `npx shadcn@latest add @kokonutui/morphic-navbar`
+- [Mouse Effect Card](https://kokonutui.com/docs/cards/mouse-effect-card.md): Interactive card with an animated dot pattern that repels away from the cursor, powered by React, Tailwind CSS and Motion spring physics. Install: `npx shadcn@latest add @kokonutui/mouse-effect-card`
+- [Particle Button](https://kokonutui.com/docs/buttons/particle-button.md): Button that bursts animated particles from its center on click with a quick scale press effect, built with React, Motion, and Tailwind CSS. Install: `npx shadcn@latest add @kokonutui/particle-button`
+- [Profile Dropdown](https://kokonutui.com/docs/navigation/profile-dropdown.md): User profile dropdown menu with avatar, subscription and model details, and quick action links, built with React, shadcn/ui, and Tailwind CSS. Install: `npx shadcn@latest add @kokonutui/profile-dropdown`
+- [Scroll Text](https://kokonutui.com/docs/texts/scroll-text.md): Scroll-driven text list that highlights the active word as you scroll, using IntersectionObserver with React, Tailwind CSS and Motion animations. Install: `npx shadcn@latest add @kokonutui/scroll-text`
+- [Shapes Hero](https://kokonutui.com/docs/backgrounds/shape-hero.md): Hero section with translucent geometric shapes that drop in and float over a gradient backdrop. Built with React, Tailwind CSS and Motion. Install: `npx shadcn@latest add @kokonutui/shape-hero`
+- [Shimmer Text](https://kokonutui.com/docs/texts/shimmer-text.md): Animated shimmer text with a looping gradient sweep across the letters, built with React, Tailwind CSS gradients and Motion animations. Install: `npx shadcn@latest add @kokonutui/shimmer-text`
+- [Sliced Text](https://kokonutui.com/docs/texts/sliced-text.md): Text effect that splits into two offset slices and merges together on hover using clip-path, built with React, Tailwind CSS and Motion animations. Install: `npx shadcn@latest add @kokonutui/sliced-text`
+- [Slide Text Button](https://kokonutui.com/docs/buttons/slide-text-button.md): Animated link button with a vertical text slide on hover and default and ghost variants, built with React, Motion, and Tailwind CSS. Install: `npx shadcn@latest add @kokonutui/slide-text-button`
+- [Smooth Drawer](https://kokonutui.com/docs/navigation/smooth-drawer.md): Bottom drawer with spring-based slide-in and staggered content reveal, built on Vaul with React, Motion, and Tailwind CSS. Install: `npx shadcn@latest add @kokonutui/smooth-drawer`
+- [Smooth Tab](https://kokonutui.com/docs/navigation/smooth-tab.md): Animated tab switcher with a sliding active indicator and smooth card content transitions, built with React, Motion, and Tailwind CSS. Install: `npx shadcn@latest add @kokonutui/smooth-tab`
+- [Social Button](https://kokonutui.com/docs/buttons/social-button.md): Share button that expands into a row of social icon buttons with staggered Motion animations on hover, built with React and Tailwind CSS. Install: `npx shadcn@latest add @kokonutui/social-button`
+- [Spotlight Cards](https://kokonutui.com/docs/cards/spotlight-cards.md): Feature card grid with ambient aurora glow, magnetic 3D tilt and focus dimming on hover, built with React, Tailwind CSS and Motion springs. Install: `npx shadcn@latest add @kokonutui/spotlight-cards`
+- [Stack](https://kokonutui.com/docs/cards/card-stack.md): Stack of product cards that expands on click to reveal details and specs, animated with Motion and styled with React and Tailwind CSS. Install: `npx shadcn@latest add @kokonutui/card-stack`
+- [Switch Button](https://kokonutui.com/docs/buttons/switch-button.md): Light and dark theme toggle button with a rotating sun icon and shimmer hover effect, built with React, next-themes, and Tailwind CSS. Install: `npx shadcn@latest add @kokonutui/switch-button`
+- [Swoosh Text](https://kokonutui.com/docs/texts/swoosh-text.md): Hover text effect with layered colorful shadows that snap flat on mouseover, built with React, Tailwind CSS and Motion hover animations. Install: `npx shadcn@latest add @kokonutui/swoosh-text`
+- [Team Selector](https://kokonutui.com/docs/inputs/team-selector.md): Animated team size selector with stacked overlapping avatars, spring transitions and increment controls. Built with React, Tailwind CSS and Motion. Install: `npx shadcn@latest add @kokonutui/team-selector`
+- [Toolbar](https://kokonutui.com/docs/navigation/toolbar.md): Figma-inspired toolbar where the selected tool expands to reveal its label with spring animations, built with React, Motion, and Tailwind CSS. Install: `npx shadcn@latest add @kokonutui/toolbar`
+- [Typing Text](https://kokonutui.com/docs/texts/type-writer.md): Typewriter text animation that types and deletes multiple sequences with a blinking cursor and auto loop, built with React and Motion. Install: `npx shadcn@latest add @kokonutui/type-writer`
+- [V0 Button](https://kokonutui.com/docs/buttons/v0-button.md): Open in v0 button that sends a component registry JSON to v0.dev for instant editing, built with React, the shadcn Button, and Tailwind CSS. Install: `npx shadcn@latest add @kokonutui/v0-button`
+- [X Card](https://kokonutui.com/docs/cards/tweet-card.md): X (Twitter) style post card with author details, verified badge, reply thread and hover gradient, built with React and Tailwind CSS. Install: `npx shadcn@latest add @kokonutui/tweet-card`
+
+## Templates and Premium Components (Kokonut UI Pro)
+
+Templates and premium components are available on the premium version of Kokonut UI.
+https://kokonutui.pro/templates
+
+## Premium Components (Kokonut UI Pro)
+
+Premium components are available on the premium version of Kokonut UI.
+https://kokonutui.pro/components
+
+## Links
+
+- Website: https://kokonutui.com
+- Github: https://github.com/kokonut-labs/kokonutui
+- Sitemap: https://kokonutui.com/sitemap.xml
+

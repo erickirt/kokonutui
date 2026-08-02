@@ -3,7 +3,9 @@ Allow: /
 Disallow: /api/
 Disallow: /_next/
 
-# AI assistants and crawlers are welcome
+# AI assistants and crawlers are welcome.
+# Structured docs for LLMs: https://kokonutui.com/llms.txt
+# Every docs page is also available as Markdown by appending .md
 User-Agent: GPTBot
 Allow: /
 

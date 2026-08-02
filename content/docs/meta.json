@@ -1,6 +1,6 @@
 {
-  "title": "Documentation",
-  "description": "The headless library",
+  "title": "KokonutUI",
+  "description": "Collection of 100+ stunning UI components free and open source built with Next.js, React, Tailwind CSS, and Motion.",
   "root": true,
   "pages": [
     "index",

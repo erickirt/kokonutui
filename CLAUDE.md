@@ -51,7 +51,7 @@ Each component has an entry in `registry/registry-components.ts` (name, dependen
 
 ### Routing / Redirects
 
-- `/components` → redirects to `/docs/components/liquid-glass-card`
+- `/components` → redirects to `/docs`
 - `/components/:path*` → redirects to `/docs/components/:path*`
 - `/r/:path` (no extension) → redirects to `/r/:path.json`
 - `/r/*.json` is served as long-cached static files from `public/r/`

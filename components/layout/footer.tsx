@@ -44,7 +44,7 @@ export function Footer() {
               <li>
                 <Link
                   className="text-black/70 text-sm transition-colors hover:text-black dark:text-white/70 dark:hover:text-white"
-                  href="/components"
+                  href="/docs"
                 >
                   Components
                 </Link>

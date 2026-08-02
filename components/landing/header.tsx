@@ -74,7 +74,7 @@ export function Header() {
                 <div className="hidden items-center gap-0.5 sm:flex">
                   <Link
                     className="flex items-center gap-1 rounded-lg px-3 py-1 font-medium text-[15px] text-black/80 tracking-tighter transition-colors duration-200 hover:bg-black/5 dark:text-white/80 dark:hover:bg-white/5"
-                    href="/docs/components/action-search-bar"
+                    href="/docs"
                   >
                     Components
                   </Link>
@@ -135,7 +135,7 @@ export function Header() {
               <div className="flex items-center gap-4 sm:hidden">
                 <Link
                   className="rounded-md border border-transparent px-3 py-1.5 text-sm text-zinc-600 transition-colors hover:border-zinc-200 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:border-zinc-800 dark:hover:bg-zinc-900 dark:hover:text-zinc-100"
-                  href="/docs/components/action-search-bar"
+                  href="/docs"
                 >
                   Components
                 </Link>

@@ -51,7 +51,7 @@ const nextConfig = {
     return [
       {
         source: "/components",
-        destination: "/docs/cards/liquid-glass-card",
+        destination: "/docs",
         permanent: true,
       },
       // Backgrounds

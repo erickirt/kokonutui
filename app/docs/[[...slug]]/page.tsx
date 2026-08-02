@@ -1,14 +1,12 @@
 import {
-  MarkdownCopyButton,
-  ViewOptionsPopover,
-} from "fumadocs-ui/layouts/notebook/page";
-import defaultMdxComponents, { createRelativeLink } from "fumadocs-ui/mdx";
-import {
   DocsBody,
   DocsDescription,
   DocsPage,
   DocsTitle,
-} from "fumadocs-ui/page";
+  MarkdownCopyButton,
+  ViewOptionsPopover,
+} from "fumadocs-ui/layouts/glass/page";
+import defaultMdxComponents, { createRelativeLink } from "fumadocs-ui/mdx";
 import { notFound } from "next/navigation";
 import TocProBanner from "@/components/landing/toc-pro-banner";
 import { Preview } from "@/components/mdx/preview";
@@ -79,16 +77,14 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
   const markdownUrl = `${page.url}.md`;
   const githubUrl = `${siteConfig.links.github}/blob/main/content/docs/${page.path}`;
 
-  const hasToc = page.data.toc.length > 0;
-
+  // The Glass layout owns page spacing, so the previous `ml-8` offsets that
+  // aligned content against the notebook sidebar are gone.
   const tableOfContent = page.data.full
     ? undefined
-    : { footer: <TocProBanner />, component: hasToc ? undefined : <></> };
+    : { footer: <TocProBanner /> };
 
   return (
     <DocsPage
-      breadcrumb={{ className: "ml-8" }}
-      footer={{ enabled: false }}
       full={page.data.full}
       tableOfContent={tableOfContent}
       toc={page.data.toc}
@@ -98,17 +94,17 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
         dangerouslySetInnerHTML={{ __html: breadcrumbData }}
         type="application/ld+json"
       />
-      <DocsTitle className="ml-8 font-semibold text-4xl tracking-tighter">
+      <DocsTitle className="font-semibold text-4xl tracking-tighter">
         {page.data.title}
       </DocsTitle>
-      <DocsDescription className="ml-8 text-xl tracking-tighter">
+      <DocsDescription className="text-xl tracking-tighter">
         {page.data.description}
       </DocsDescription>
-      <div className="ml-8 flex flex-row items-center gap-2">
+      <div className="flex flex-row items-center gap-2">
         <MarkdownCopyButton markdownUrl={markdownUrl} />
         <ViewOptionsPopover githubUrl={githubUrl} markdownUrl={markdownUrl} />
       </div>
-      <DocsBody className="ml-8">
+      <DocsBody>
         <MDX
           components={{
             ...defaultMdxComponents,

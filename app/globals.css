@@ -3,7 +3,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @import "fumadocs-ui/css/preset.css";
-@import "fumadocs-ui/css/solar.css";
+@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/generated/glass.css";
 /* @import "fumadocs-ui/css/shadcn.css"; */
 /* @import "fumadocs-ui/css/black.css"; */
 /* @import "fumadocs-ui/css/catppuccin.css"; */
@@ -190,12 +191,6 @@ button {
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  @media (min-width: 1024px) {
-    article {
-      padding-left: 0px !important;
-    }
   }
 }
 

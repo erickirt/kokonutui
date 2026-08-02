@@ -47,8 +47,10 @@ export function Preview({
       ) : (
         <div
           className={cn(
-            "not-prose relative my-4 flex items-center justify-center rounded-md border border-zinc-400 p-2 md:p-8 dark:border-zinc-800",
-            compact ? "min-h-[100px]" : "min-h-[400px]",
+            // `preview-surface` is the hook `globals.css` uses to let the
+            // preview fill the page on `full: true` docs pages.
+            "preview-surface not-prose relative my-4 flex items-center justify-center rounded-md border border-zinc-400 p-2 md:p-8 dark:border-zinc-800",
+            compact ? "preview-surface-compact min-h-[100px]" : "min-h-[400px]",
             isBlock ? "md:p-0" : ""
           )}
         >

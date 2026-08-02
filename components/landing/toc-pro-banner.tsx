@@ -7,7 +7,7 @@ import TailwindCSS from "@/components/icons/tailwindcss";
 
 const FEATURES = [
   "100+ templates, blocks and components",
-  "One click deployment templates",
+  "Works with any AI agent — Claude Code, Codex, Cursor, and more",
   "Built with React, TypeScript and Tailwind CSS v4",
   "Animations with Motion",
   "One command installation with shadcn/cli",
@@ -23,7 +23,7 @@ const STACK = [
 export default function TocProBanner() {
   return (
     <Link
-      className="group relative mt-4 flex flex-col gap-4 overflow-hidden rounded-xl border border-[#FF2D55]/25 p-4 transition-colors duration-200 ease-out hover:border-[#FF2D55]/45"
+      className="group relative mt-4 flex w-full flex-col items-start gap-4 overflow-hidden rounded-xl border border-[#FF2D55]/25 p-4 text-start transition-colors duration-200 ease-out hover:border-[#FF2D55]/45"
       href="https://kokonutui.pro?utm_source=kokonutui.com&utm_medium=toc"
       rel="noopener"
       target="_blank"
@@ -54,13 +54,13 @@ export default function TocProBanner() {
       {/* Feature bullets */}
       <ul className="relative flex flex-col gap-4">
         {FEATURES.map((f) => (
-          <li className="flex items-center gap-2" key={f}>
+          <li className="flex items-start gap-2" key={f}>
             <Check
-              className="h-3 w-3 shrink-0"
+              className="mt-0.5 h-3 w-3 shrink-0"
               strokeWidth={2.5}
               style={{ color: "#FF2D55" }}
             />
-            <span className="text-muted-foreground text-sm leading-none">
+            <span className="text-muted-foreground text-sm leading-snug">
               {f}
             </span>
           </li>

@@ -1,39 +1,24 @@
-import { ArrowUpRight, PartyPopper } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { ConfettiOutline } from "../icons/conffeti";
 
+/**
+ * Pro badge shown in the docs sidebar. The Glass layout renders `custom`
+ * links in a bare div with no spacing of its own, so the surrounding margins
+ * have to live on this element.
+ */
 export default function HeaderProSmall() {
   return (
-    <div className="w-full rounded-md bg-[#FF2D55]">
-      <div className="w-full px-4 py-1.5">
-        <Link
-          className="group flex items-center justify-center gap-2.5 tracking-tighter transition-opacity duration-200 md:gap-3"
-          href="https://kokonutui.pro?utm_source=kokonutui.com&utm_medium=header"
-          target="_blank"
-        >
-          {/* Desktop View */}
-          <span className="hidden items-center gap-3 md:flex">
-            <ConfettiOutline className="h-5 w-5 text-white" />
-            <span className="text-sm text-white tracking-tighter">
-              Introducing <span className="font-bold">Kokonut UI Pro</span> -
-              70+ new components and templates to build beautiful websites
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <ArrowUpRight className="h-3.5 w-3.5 text-white transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </span>
-          </span>
-
-          {/* Mobile View */}
-          <span className="flex items-center gap-2.5 md:hidden">
-            <PartyPopper className="h-5 w-5 flex-shrink-0 text-white" />
-            <span className="font-medium text-white text-xs leading-tight tracking-tight">
-              Introducing Kokonut UI Pro - 70+ new components and templates to
-              build beautiful websites
-            </span>
-            <ArrowUpRight className="h-3.5 w-3.5 flex-shrink-0 text-white transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </span>
-        </Link>
-      </div>
-    </div>
+    <Link
+      className="group mt-2 mb-3 flex w-full items-center gap-2.5 rounded-lg bg-[#FF2D55] px-3 py-2 tracking-tighter transition-opacity duration-200 hover:opacity-90"
+      href="https://kokonutui.pro?utm_source=kokonutui.com&utm_medium=header"
+      target="_blank"
+    >
+      <ConfettiOutline className="h-4 w-4 shrink-0 text-white" />
+      <span className="min-w-0 flex-1 truncate font-medium text-sm text-white">
+        Kokonut UI Pro
+      </span>
+      <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-white transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+    </Link>
   );
 }

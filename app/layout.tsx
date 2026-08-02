@@ -29,6 +29,9 @@ export const metadata: Metadata = {
     "react design",
   ],
   robots: "index, follow",
+  alternates: {
+    canonical: siteConfig.url,
+  },
   authors: [{ name: "Dorian Baffier", url: "https://x.com/dorianbaffier" }],
   creator: "Dorian Baffier",
   openGraph: {

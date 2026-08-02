@@ -1,5 +1,6 @@
 import type { LLMsOptions } from "fumadocs-core/mdx-plugins/remark-llms";
 import { defineConfig, defineDocs } from "fumadocs-mdx/config";
+import lastModified from "fumadocs-mdx/plugins/last-modified";
 
 /**
  * Docs pages are almost entirely JSX — the install command, source code and
@@ -21,4 +22,8 @@ export const docs = defineDocs({
   },
 });
 
-export default defineConfig();
+export default defineConfig({
+  // Real per-page git timestamps, so the sitemap reports accurate
+  // <lastmod> values instead of the build time for every page.
+  plugins: [lastModified()],
+});

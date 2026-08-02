@@ -27,27 +27,50 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
 
   const MDX = page.data.body;
 
+  const pageUrl = `${siteConfig.url}${page.url}`;
+  const lastModified = page.data.lastModified;
+
   const breadcrumbData = JSON.stringify({
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
+    "@graph": [
       {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: siteConfig.url,
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: siteConfig.url,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Docs",
+            item: `${siteConfig.url}/docs`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: page.data.title,
+            item: pageUrl,
+          },
+        ],
       },
       {
-        "@type": "ListItem",
-        position: 2,
-        name: "Docs",
-        item: `${siteConfig.url}/docs`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: page.data.title,
-        item: `${siteConfig.url}${page.url}`,
+        "@type": "TechArticle",
+        "@id": `${pageUrl}#article`,
+        headline: page.data.title,
+        description: page.data.description,
+        url: pageUrl,
+        dateModified: lastModified?.toISOString(),
+        inLanguage: "en-US",
+        isPartOf: { "@id": `${siteConfig.url}/#website` },
+        publisher: { "@id": `${siteConfig.url}/#organization` },
+        author: {
+          "@type": "Person",
+          name: "Dorian Baffier",
+          url: siteConfig.links.twitter,
+        },
       },
     ],
   });
@@ -125,7 +148,7 @@ export async function generateMetadata(props: {
     title: page.data.title,
     description: page.data.description,
     alternates: {
-      canonical: page.url,
+      canonical: `${siteConfig.url}${page.url}`,
     },
     openGraph: {
       title: page.data.title,

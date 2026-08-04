@@ -16,14 +16,14 @@ export default function proxy(request: NextRequest) {
     const result = rewriteLLM(request.nextUrl.pathname);
 
     if (result) {
-      const response = NextResponse.rewrite(new URL(result, request.nextUrl));
-
-      // Set on the response, not via `rewrite`'s `headers` option — that one
-      // forwards headers to the *request*, so the `Vary` never reached the
-      // client and a CDN could serve cached HTML to a Markdown request.
-      response.headers.append("Vary", "Accept");
-
-      return response;
+      // No `Vary: Accept` here: Next overwrites `Vary` on App Router page
+      // responses with its own router values, and it does the same to a
+      // `headers()` entry in next.config.mjs. The HTML variant is prerendered
+      // and always answers without `Accept` in its `Vary`, so a shared cache
+      // keyed only on the URL could reuse it for a Markdown request. Vercel's
+      // own routing distinguishes the two, so this only affects intermediary
+      // caches — the `.md` suffix is the cache-safe path for those.
+      return NextResponse.rewrite(new URL(result, request.nextUrl));
     }
   }
 

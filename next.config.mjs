@@ -39,11 +39,15 @@ const nextConfig = {
         ],
       },
       {
+        // Not `immutable`: `/_next/image` is keyed by query string, so the
+        // same URL serves different bytes when the source image changes.
+        // `immutable` would pin a stale image in every browser for the full
+        // TTL with no way to bust it — deploys only clear the edge cache.
         source: "/_next/image",
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=86400, immutable",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
           },
         ],
       },

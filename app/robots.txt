@@ -3,6 +3,10 @@ Allow: /
 Disallow: /api/
 Disallow: /_next/
 
+# Content Signals (https://contentsignals.org). These components are MIT
+# licensed and meant to be installed by agents, so every use is permitted.
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+
 # AI assistants and crawlers are welcome.
 # Structured docs for LLMs: https://kokonutui.com/llms.txt
 # Every docs page is also available as Markdown by appending .md

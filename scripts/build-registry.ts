@@ -1,3 +1,4 @@
+import { createHash } from "crypto";
 import { promises as fs } from "fs";
 import { glob } from "glob";
 import path from "path";
@@ -7,6 +8,27 @@ import { registry } from "../registry/index";
 
 const REGISTRY_BASE_PATH = process.cwd();
 const PUBLIC_FOLDER_BASE_PATH = "public/r";
+const SKILLS_FOLDER_BASE_PATH = "public/.well-known/agent-skills";
+const SITE_URL = "https://kokonutui.com";
+
+// Agent Skills Discovery RFC v0.2.0 (https://agentskills.io).
+const SKILLS_SCHEMA_URL =
+  "https://schemas.agentskills.io/discovery/0.2.0/schema.json";
+
+/**
+ * Skills published for agent discovery. Each entry points at a SKILL.md that
+ * lives under `public/.well-known/agent-skills/`; its digest is computed from
+ * the file itself at build time so the index can never drift from what is
+ * actually served.
+ */
+const AGENT_SKILLS = [
+  {
+    name: "install-kokonutui-component",
+    dir: "install-component",
+    description:
+      "Find and install a KokonutUI React component into a project using the shadcn CLI, and read its source and documentation.",
+  },
+] as const;
 
 const BACKSLASH_REGEX = /\\/g;
 const DOCS_PREFIX_REGEX = /^content\/docs\//;
@@ -63,6 +85,44 @@ async function writeFileRecursive(filePath: string, data: string) {
     console.error(error);
     console.log();
   }
+}
+
+/**
+ * Writes the agent skills discovery index, hashing each SKILL.md so the
+ * `sha256:` digests match the bytes served at the skill's URL.
+ */
+async function generateAgentSkillsIndex() {
+  const skills: {
+    name: string;
+    type: string;
+    description: string;
+    url: string;
+    digest: string;
+  }[] = [];
+
+  for (const skill of AGENT_SKILLS) {
+    const skillPath = path.join(
+      REGISTRY_BASE_PATH,
+      SKILLS_FOLDER_BASE_PATH,
+      skill.dir,
+      "SKILL.md"
+    );
+    const contents = await fs.readFile(skillPath);
+    const digest = createHash("sha256").update(contents).digest("hex");
+
+    skills.push({
+      name: skill.name,
+      type: "skill-md",
+      description: skill.description,
+      url: `${SITE_URL}/.well-known/agent-skills/${skill.dir}/SKILL.md`,
+      digest: `sha256:${digest}`,
+    });
+  }
+
+  await writeFileRecursive(
+    `${SKILLS_FOLDER_BASE_PATH}/index.json`,
+    `${JSON.stringify({ $schema: SKILLS_SCHEMA_URL, skills }, null, 2)}\n`
+  );
 }
 
 interface ComponentInfo {
@@ -294,6 +354,14 @@ const main = async () => {
   );
   const componentsInfo = await getComponentsInfo();
   await generateLLMsFile(componentsInfo);
+
+  printDivider();
+
+  // Generate agent skills discovery index
+  console.log(
+    `${colors.yellow}${symbols.arrow} Generating agent skills index${colors.reset}`
+  );
+  await generateAgentSkillsIndex();
 
   printDivider();
 };

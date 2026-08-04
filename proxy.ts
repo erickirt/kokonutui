@@ -16,9 +16,14 @@ export default function proxy(request: NextRequest) {
     const result = rewriteLLM(request.nextUrl.pathname);
 
     if (result) {
-      return NextResponse.rewrite(new URL(result, request.nextUrl), {
-        headers: { Vary: "Accept" },
-      });
+      const response = NextResponse.rewrite(new URL(result, request.nextUrl));
+
+      // Set on the response, not via `rewrite`'s `headers` option — that one
+      // forwards headers to the *request*, so the `Vary` never reached the
+      // client and a CDN could serve cached HTML to a Markdown request.
+      response.headers.append("Vary", "Accept");
+
+      return response;
     }
   }
 

@@ -135,10 +135,10 @@ const FloatingPaths = memo(function FloatingPaths({
   const sharedAnimationProps = {
     opacity: 1,
     scale: 1,
-    transition: {
-      opacity: { duration: 1 },
-      scale: { duration: 1 },
-    },
+  };
+  const sharedTransition = {
+    opacity: { duration: 1 },
+    scale: { duration: 1 },
   };
 
   return (
@@ -173,7 +173,7 @@ const FloatingPaths = memo(function FloatingPaths({
               strokeWidth={path.width}
               style={{ opacity: path.opacity }}
               transition={{
-                ...sharedAnimationProps.transition,
+                ...sharedTransition,
                 y: {
                   duration: 8,
                   repeat: Number.POSITIVE_INFINITY,
@@ -200,7 +200,7 @@ const FloatingPaths = memo(function FloatingPaths({
               strokeWidth={path.width}
               style={{ opacity: path.opacity }}
               transition={{
-                ...sharedAnimationProps.transition,
+                ...sharedTransition,
                 y: {
                   duration: 6,
                   repeat: Number.POSITIVE_INFINITY,
@@ -227,7 +227,7 @@ const FloatingPaths = memo(function FloatingPaths({
               strokeWidth={path.width}
               style={{ opacity: path.opacity }}
               transition={{
-                ...sharedAnimationProps.transition,
+                ...sharedTransition,
                 y: {
                   duration: 4,
                   repeat: Number.POSITIVE_INFINITY,

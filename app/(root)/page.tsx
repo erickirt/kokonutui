@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { HeroSection } from "@/components/landing/hero";
+import { HeroSplit } from "@/components/landing/hero-split";
 import HowItWorks from "@/components/landing/how-it-works";
 import ProSection from "@/components/landing/pro-section";
 import StatsBar from "@/components/landing/stats-bar";
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <HeroSection />
+      <HeroSplit />
       <StatsBar />
       <ProSection />
       <HowItWorks />

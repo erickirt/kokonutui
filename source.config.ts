@@ -1,6 +1,11 @@
 import type { LLMsOptions } from "fumadocs-core/mdx-plugins/remark-llms";
-import { defineConfig, defineDocs } from "fumadocs-mdx/config";
+import {
+  defineConfig,
+  defineDocs,
+  frontmatterSchema,
+} from "fumadocs-mdx/config";
 import lastModified from "fumadocs-mdx/plugins/last-modified";
+import { z } from "zod";
 
 /**
  * Docs pages are almost entirely JSX — the install command, source code and
@@ -19,6 +24,14 @@ export const docs = defineDocs({
     postprocess: {
       includeProcessedMarkdown: llmsOptions,
     },
+    schema: frontmatterSchema.extend({
+      /**
+       * Search-only synonyms ("glow", "cta", "shimmer"…) folded into the
+       * Orama index by `app/api/search/route.ts` — component pages have
+       * almost no prose, so title + description alone miss these terms.
+       */
+      keywords: z.array(z.string()).optional(),
+    }),
   },
 });
 

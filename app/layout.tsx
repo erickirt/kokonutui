@@ -6,6 +6,7 @@ import { RootProvider } from "fumadocs-ui/provider/next";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { ViewTransitions } from "next-view-transitions";
+import StaticSearchDialog from "@/components/search-dialog";
 import { META_THEME_COLORS, siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
@@ -99,7 +100,7 @@ export default function RootLayout({
             dangerouslySetInnerHTML={{ __html: structuredData }}
             type="application/ld+json"
           />
-          <RootProvider>
+          <RootProvider search={{ SearchDialog: StaticSearchDialog }}>
             <ThemeProvider
               attribute="class"
               defaultTheme="system"

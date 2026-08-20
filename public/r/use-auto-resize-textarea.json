@@ -1,6 +1,7 @@
 {
   "name": "use-auto-resize-textarea",
   "type": "registry:hook",
+  "description": "React hook that auto-resizes a textarea to fit its content between a min and max height.",
   "files": [
     {
       "type": "registry:hook",

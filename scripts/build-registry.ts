@@ -153,7 +153,7 @@ const getComponentsInfo = async (): Promise<ComponentInfo[]> => {
   try {
     const mdxFiles = await glob("content/docs/**/*.mdx", {
       cwd: REGISTRY_BASE_PATH,
-      ignore: ["content/docs/index.mdx"],
+      ignore: ["content/docs/index.mdx", "content/docs/mcp.mdx"],
     });
     const components: ComponentInfo[] = [];
 
@@ -194,12 +194,72 @@ const getComponentsInfo = async (): Promise<ComponentInfo[]> => {
   }
 };
 
+const REGISTRY_INDEX_SCHEMA_URL = "https://ui.shadcn.com/schema/registry.json";
+
+const titleFromName = (name: string): string =>
+  name
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
+/**
+ * Writes the registry index served at `/r/registry.json`, which the shadcn
+ * CLI and MCP server read to list every installable item. Titles and
+ * descriptions come from each component's docs frontmatter (falling back to
+ * the registry entry itself for hooks and lib items without docs pages), so
+ * the index can never drift from the registry or the documentation.
+ */
+const generateRegistryIndex = async (
+  components: ComponentInfo[]
+): Promise<void> => {
+  const docsByName = new Map(
+    components.map((component) => [component.name, component])
+  );
+
+  const items = registry.map((entry) => {
+    const docs = docsByName.get(entry.name);
+    return {
+      name: entry.name,
+      type: entry.type,
+      title: docs?.title ?? titleFromName(entry.name),
+      description: docs?.description ?? entry.description,
+      dependencies: entry.dependencies,
+      registryDependencies: entry.registryDependencies,
+      files: (entry.files ?? []).map((file) =>
+        typeof file === "string"
+          ? { path: file, type: entry.type }
+          : { path: file.path, type: file.type }
+      ),
+    };
+  });
+
+  const index = `${JSON.stringify(
+    {
+      $schema: REGISTRY_INDEX_SCHEMA_URL,
+      name: "kokonut-ui",
+      homepage: SITE_URL,
+      items,
+    },
+    null,
+    2
+  )}\n`;
+
+  // The root copy is the canonical source in the repo; the public copy is
+  // what actually gets served at kokonutui.com/r/registry.json.
+  await writeFileRecursive("registry.json", index);
+  await writeFileRecursive(`${PUBLIC_FOLDER_BASE_PATH}/registry.json`, index);
+};
+
 const generateLLMsFile = async (components: ComponentInfo[]): Promise<void> => {
   const llmsContent = `# KokonutUI - Component Registry Index
 
 Collection of ${components.length} UI components free and open source built with Next.js, React, Tailwind CSS, and Motion.
 
 Install any component with: npx shadcn@latest add @kokonutui/<component-name>
+
+Agents can also browse and install components through the shadcn MCP server
+(npx shadcn@latest mcp) once the @kokonutui registry is configured in
+components.json. Setup guide: https://kokonutui.com/docs/mcp
 
 The documentation index for LLMs lives at https://kokonutui.com/llms.txt
 
@@ -354,6 +414,14 @@ const main = async () => {
   );
   const componentsInfo = await getComponentsInfo();
   await generateLLMsFile(componentsInfo);
+
+  printDivider();
+
+  // Generate the registry index for the shadcn CLI and MCP server
+  console.log(
+    `${colors.yellow}${symbols.arrow} Generating registry index${colors.reset}`
+  );
+  await generateRegistryIndex(componentsInfo);
 
   printDivider();
 

@@ -1,7 +1,6 @@
 ---
 title: Installation
 description: Install KokonutUI components in any React or Next.js project with the shadcn CLI, using namespaces or direct registry URLs. No extra setup required.
-icon: ListStart
 ---
 
 #
@@ -102,11 +101,15 @@ export default function Page() {
 
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 
-### 4. Optionnal dependencies
+### 4. Using an AI assistant?
+
+KokonutUI works with the shadcn MCP server, so Claude Code, Cursor, VS Code, and Codex can browse and install components through natural language. See the [MCP Server guide](/docs/mcp) to set it up.
+
+### 5. Optionnal dependencies
 
 Some components require additional libraries, listed at the bottom of each components. Make sure to install them to ensure the component works properly.
 
-### 5. Monorepo
+### 6. Monorepo
 
 For monorepo `shadcn/ui` CLI contain the options `-c` to the path to your workspace for exemple:
 

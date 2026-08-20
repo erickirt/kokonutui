@@ -1,6 +1,7 @@
 {
   "name": "use-mobile",
   "type": "registry:hook",
+  "description": "React hook that reports whether the viewport is below the 768px mobile breakpoint.",
   "files": [
     {
       "type": "registry:hook",

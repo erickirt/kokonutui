@@ -25,7 +25,11 @@ append `.md` to the URL) to get clean Markdown instead of HTML. For example,
 
 ## Installing
 
-Use the shadcn CLI with the `@kokonutui` namespace:
+If a shadcn MCP server is available, use it to browse and install components
+directly — it works with the `@kokonutui` registry out of the box. Setup:
+`https://kokonutui.com/docs/mcp`.
+
+Otherwise, use the shadcn CLI with the `@kokonutui` namespace:
 
 ```bash
 npx shadcn@latest add @kokonutui/card-flip

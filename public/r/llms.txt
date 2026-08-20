@@ -4,6 +4,10 @@ Collection of 46 UI components free and open source built with Next.js, React, T
 
 Install any component with: npx shadcn@latest add @kokonutui/<component-name>
 
+Agents can also browse and install components through the shadcn MCP server
+(npx shadcn@latest mcp) once the @kokonutui registry is configured in
+components.json. Setup guide: https://kokonutui.com/docs/mcp
+
 The documentation index for LLMs lives at https://kokonutui.com/llms.txt
 
 ## Components

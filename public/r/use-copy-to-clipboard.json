@@ -1,6 +1,7 @@
 {
   "name": "use-copy-to-clipboard",
   "type": "registry:hook",
+  "description": "React hook that copies text to the clipboard and exposes a copied state with a reset timeout.",
   "files": [
     {
       "type": "registry:hook",
